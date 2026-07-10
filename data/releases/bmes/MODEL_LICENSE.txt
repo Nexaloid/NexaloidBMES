@@ -1,0 +1,6 @@
+SPDX-License-Identifier: NOASSERTION
+Distribution: internal
+
+The current entity BMES model is not cleared for public redistribution.
+Replace this notice with the cleared model license and attribution before a
+public release.

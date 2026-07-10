@@ -25,7 +25,7 @@ data/tasks/entity_llm_bmes/        grouped splits and JSON training model
 data/tasks/entity_hmm/             legacy PER/LOC/ORG baseline data
 data/resources/                    bounded WordHub gazetteer
 data/releases/bmes/                exported .nxbmes artifact and manifest
-tools/                             label, build, train, quality, export, sync
+tools/                             label, build, train, quality, export
 plugins/                           optional Zig BMES CandidateProvider
 archive/                           legacy PER/LOC/ORG and lexicon baselines
 include/                           Nexaloid plugin ABI header
@@ -74,11 +74,15 @@ Load it from Nexaloid:
 
 The plugin mmaps one self-contained `.nxbmes` containing hashed perceptron weights plus general/entity NXDICT tries. It uses CandidateProvider ABI v1 and requires no core ABI changes. Loading any plugin currently serializes Nexaloid batch tokenization.
 
-## Sync to Nexaloid
+## Release for Nexaloid
 
-```powershell
-python tools/sync_nxbmes_to_nexaloid.py --nexaloid-dir ..\Nexaloid
-```
+The release workflow publishes an immutable, versioned model after explicit
+license clearance. Its manifest records `distribution.scope=public` and the
+model SPDX license. Nexaloid downloads a pinned tag and SHA-256 during its own
+release; the model is not copied into the Nexaloid Git repository. A release
+also requires a reviewed `data/releases/bmes/MODEL_LICENSE.txt` with
+`Distribution: public`; the checked-in notice deliberately blocks the current
+uncleared model.
 
 ## Data Licensing
 

@@ -327,7 +327,7 @@ fn provideCandidates(
         previous = current;
     }
     var final_state: usize = 0;
-    for ([_]usize{ 2, 4 }) |state| if (previous[state] > previous[final_state]) {
+    for ([_]usize{ 3, 4 }) |state| if (previous[state] > previous[final_state]) {
         final_state = state;
     };
     const tags = try allocator.alloc(u8, chars.items.len);

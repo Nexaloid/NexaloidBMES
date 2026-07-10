@@ -61,7 +61,16 @@ def main() -> int:
         type=Path,
         default=Path("data/releases/bmes/entity_bmes_perceptron.manifest.json"),
     )
+    parser.add_argument(
+        "--distribution",
+        choices=("internal", "public"),
+        default="internal",
+    )
+    parser.add_argument("--license-spdx", default="NOASSERTION")
     args = parser.parse_args()
+
+    if args.distribution == "public" and args.license_spdx.strip() in {"", "NOASSERTION"}:
+        raise SystemExit("public artifacts require --license-spdx")
 
     model = json.loads(args.model.read_text(encoding="utf-8"))
     if model.get("generic") is not True or model.get("states") != list(STATES):
@@ -125,6 +134,10 @@ def main() -> int:
         "feature_count": len(records),
         "feature_record_size": struct.calcsize(FEATURE),
         "states": list(STATES),
+        "distribution": {
+            "scope": args.distribution,
+            "license_spdx": args.license_spdx,
+        },
         "max_word_len": max_word_len,
         "general_lexicon_size": len(general_words),
         "entity_lexicon_size": len(entity_words),

@@ -70,6 +70,10 @@ def main() -> int:
     assert manifest["feature_count"] == count
     assert manifest["general_lexicon_size"] == general_count
     assert manifest["entity_lexicon_size"] == entity_count
+    distribution = manifest["distribution"]
+    assert distribution["scope"] in {"internal", "public"}
+    if distribution["scope"] == "public":
+        assert distribution["license_spdx"] != "NOASSERTION"
     print("nxbmes_ok")
     print(f"sha256\t{digest}")
     return 0

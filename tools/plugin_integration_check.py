@@ -80,7 +80,7 @@ def main() -> int:
             tokenizer.load_plugin(plugin, json.dumps({"artifact": str(args.artifact)}))
             for text, expected in (
                 ("患者服用阿司匹林治疗冠心病。", "阿司匹林"),
-                ("苹果公司发布iPhone 16 Pro。", "iPhone 16 Pro"),
+                ("苹果公司发布iPhone 16 Pro", "iPhone 16 Pro"),
                 ("该系统采用Transformer和CUDA加速。", "Transformer"),
             ):
                 entities = [
