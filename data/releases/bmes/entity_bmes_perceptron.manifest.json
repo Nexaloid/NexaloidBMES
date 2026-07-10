@@ -1,0 +1,43 @@
+{
+  "artifact": "data/releases/bmes/entity_bmes_perceptron.nxbmes",
+  "artifact_format": "nxbmes.v1",
+  "artifact_sha256": "8f8d8e09a3c4af4e3f0e2cd18e01691573dab157849ed740b22887d545c47bd9",
+  "entity_lexicon_size": 177,
+  "feature_count": 75237,
+  "feature_hash": "fnv1a64",
+  "feature_record_size": 32,
+  "general_lexicon_size": 10707,
+  "inputs": {
+    "gazetteer": "data/resources/lexicon_wordhub.txt",
+    "gazetteer_sha256": "780d4e6b777dc02f7ae055ee76803c6b263ef35828cb937f07f4b8faa19e57e4",
+    "model": "data/tasks/entity_llm_bmes/entity_llm_perceptron_generic.json",
+    "model_sha256": "70e6c39b8c1ef245a96a7eb0c2d639c9391099d1e04bd57367e3c0d25bc536eb"
+  },
+  "max_word_len": 12,
+  "quality": {
+    "dev": {
+      "f1": 0.492013,
+      "fn": 115,
+      "fp": 44,
+      "precision": 0.636364,
+      "recall": 0.401042,
+      "tp": 77
+    },
+    "test": {
+      "f1": 0.487973,
+      "fn": 98,
+      "fp": 51,
+      "precision": 0.581967,
+      "recall": 0.420118,
+      "tp": 71
+    }
+  },
+  "schema": "nexaloid.bmes_manifest.v1",
+  "states": [
+    "O",
+    "B",
+    "M",
+    "E",
+    "S"
+  ]
+}

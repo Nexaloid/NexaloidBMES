@@ -1,0 +1,394 @@
+{
+  "badcases": {
+    "by_type": {
+      "LOC": {
+        "f1": 0.1818181818181818,
+        "gold": 5,
+        "precision": 0.16666666666666666,
+        "predicted": 6,
+        "recall": 0.2,
+        "tp": 1
+      },
+      "ORG": {
+        "f1": 0.8,
+        "gold": 3,
+        "precision": 1.0,
+        "predicted": 2,
+        "recall": 0.6666666666666666,
+        "tp": 2
+      },
+      "PER": {
+        "f1": 0.75,
+        "gold": 4,
+        "precision": 0.75,
+        "predicted": 4,
+        "recall": 0.75,
+        "tp": 3
+      }
+    },
+    "exact": 8,
+    "exact_rate": 0.5714285714285714,
+    "f1": 0.5,
+    "failures": [
+      {
+        "actual": [
+          "LOC:0:3:长春市"
+        ],
+        "expected": [
+          "LOC:0:2:长春"
+        ],
+        "text": "长春市长春节前发表讲话"
+      },
+      {
+        "actual": [
+          "PER:0:3:王小明",
+          "LOC:4:9:东湖区工作"
+        ],
+        "expected": [
+          "PER:0:3:王小明",
+          "LOC:4:7:东湖区"
+        ],
+        "text": "王小明在东湖区工作"
+      },
+      {
+        "actual": [
+          "PER:1:3:王明"
+        ],
+        "expected": [
+          "PER:0:2:小王"
+        ],
+        "text": "小王明天参加会议"
+      },
+      {
+        "actual": [
+          "PER:0:2:雷锋",
+          "LOC:3:8:神代代相传"
+        ],
+        "expected": [
+          "PER:0:2:雷锋"
+        ],
+        "text": "雷锋精神代代相传"
+      },
+      {
+        "actual": [
+          "LOC:2:6:日本东京"
+        ],
+        "expected": [
+          "LOC:2:4:日本",
+          "LOC:4:6:东京"
+        ],
+        "text": "他从日本东京返回"
+      },
+      {
+        "actual": [
+          "LOC:0:4:上海证券"
+        ],
+        "expected": [
+          "ORG:0:7:上海证券交易所"
+        ],
+        "text": "上海证券交易所发布公告"
+      }
+    ],
+    "false_positives_per_1k_chars": 46.51162790697674,
+    "gold": 12,
+    "negative_cases": 5,
+    "negative_false_positives": 0,
+    "precision": 0.5,
+    "predicted": 12,
+    "recall": 0.5,
+    "total": 14,
+    "tp": 6
+  },
+  "dev": {
+    "by_type": {
+      "LOC": {
+        "f1": 0.9292682926829268,
+        "gold": 1200,
+        "precision": 0.9071428571428571,
+        "predicted": 1260,
+        "recall": 0.9525,
+        "tp": 1143
+      },
+      "ORG": {
+        "f1": 0.9137222678718159,
+        "gold": 1200,
+        "precision": 0.9011345218800648,
+        "predicted": 1234,
+        "recall": 0.9266666666666666,
+        "tp": 1112
+      },
+      "PER": {
+        "f1": 0.9358200767964894,
+        "gold": 900,
+        "precision": 0.9241603466955579,
+        "predicted": 923,
+        "recall": 0.9477777777777778,
+        "tp": 853
+      }
+    },
+    "exact": 2918,
+    "exact_rate": 0.911875,
+    "f1": 0.9254131308619921,
+    "failures": [
+      {
+        "actual": [
+          "LOC:0:3:长春市"
+        ],
+        "expected": [],
+        "text": "长春市长春节前发表讲话"
+      },
+      {
+        "actual": [
+          "LOC:0:5:江苏太仓市",
+          "ORG:6:11:渡商业银行"
+        ],
+        "expected": [
+          "ORG:0:11:江苏太仓市陆渡商业银行"
+        ],
+        "text": "江苏太仓市陆渡商业银行完成系统升级"
+      },
+      {
+        "actual": [
+          "LOC:1:4:从弓村"
+        ],
+        "expected": [
+          "LOC:2:4:弓村"
+        ],
+        "text": "他从弓村返回"
+      },
+      {
+        "actual": [
+          "ORG:1:4:所大学"
+        ],
+        "expected": [],
+        "text": "这所大学今天开学"
+      },
+      {
+        "actual": [
+          "ORG:1:4:所大学"
+        ],
+        "expected": [],
+        "text": "这所大学今天开学"
+      },
+      {
+        "actual": [
+          "LOC:0:2:向县"
+        ],
+        "expected": [
+          "PER:0:2:向县"
+        ],
+        "text": "向县今天发表讲话"
+      },
+      {
+        "actual": [
+          "ORG:1:4:所大学"
+        ],
+        "expected": [],
+        "text": "这所大学今天开学"
+      },
+      {
+        "actual": [
+          "PER:0:3:澳林春",
+          "ORG:4:9:小人民医院"
+        ],
+        "expected": [
+          "ORG:0:9:澳林春天小人民医院"
+        ],
+        "text": "澳林春天小人民医院完成系统升级"
+      },
+      {
+        "actual": [
+          "LOC:0:3:长春市"
+        ],
+        "expected": [],
+        "text": "长春市长春节前发表讲话"
+      },
+      {
+        "actual": [
+          "PER:0:2:哈拉",
+          "LOC:3:6:拉克乡"
+        ],
+        "expected": [
+          "LOC:0:6:哈拉布拉克乡"
+        ],
+        "text": "哈拉布拉克乡发布了最新通知"
+      },
+      {
+        "actual": [
+          "ORG:4:9:阳产业集团"
+        ],
+        "expected": [
+          "ORG:3:9:正阳产业集团"
+        ],
+        "text": "我们与正阳产业集团签署协议"
+      },
+      {
+        "actual": [
+          "LOC:0:3:长春市"
+        ],
+        "expected": [],
+        "text": "长春市长春节前发表讲话"
+      }
+    ],
+    "false_positives_per_1k_chars": 8.732513777024163,
+    "gold": 3300,
+    "negative_cases": 500,
+    "negative_false_positives": 100,
+    "precision": 0.9095697980684812,
+    "predicted": 3417,
+    "recall": 0.9418181818181818,
+    "total": 3200,
+    "tp": 3108
+  },
+  "test": {
+    "by_type": {
+      "LOC": {
+        "f1": 0.9312039312039312,
+        "gold": 1200,
+        "precision": 0.9154589371980676,
+        "predicted": 1242,
+        "recall": 0.9475,
+        "tp": 1137
+      },
+      "ORG": {
+        "f1": 0.9185855263157894,
+        "gold": 1199,
+        "precision": 0.9059205190592052,
+        "predicted": 1233,
+        "recall": 0.9316096747289407,
+        "tp": 1117
+      },
+      "PER": {
+        "f1": 0.9401523394994559,
+        "gold": 900,
+        "precision": 0.9211087420042644,
+        "predicted": 938,
+        "recall": 0.96,
+        "tp": 864
+      }
+    },
+    "exact": 2920,
+    "exact_rate": 0.9127852453891842,
+    "f1": 0.929082240762813,
+    "failures": [
+      {
+        "actual": [
+          "ORG:1:4:所大学"
+        ],
+        "expected": [],
+        "text": "这所大学今天开学"
+      },
+      {
+        "actual": [
+          "PER:0:2:陆军"
+        ],
+        "expected": [],
+        "text": "陆军正在组织训练"
+      },
+      {
+        "actual": [
+          "PER:0:2:陆军"
+        ],
+        "expected": [],
+        "text": "陆军正在组织训练"
+      },
+      {
+        "actual": [
+          "LOC:3:6:孤山镇"
+        ],
+        "expected": [
+          "LOC:2:6:小孤山镇"
+        ],
+        "text": "他从小孤山镇返回"
+      },
+      {
+        "actual": [
+          "ORG:1:4:所大学"
+        ],
+        "expected": [],
+        "text": "这所大学今天开学"
+      },
+      {
+        "actual": [
+          "PER:0:3:谢振定",
+          "LOC:6:11:直湖前小区",
+          "ORG:14:22:杜园科技有限公司"
+        ],
+        "expected": [
+          "PER:0:3:谢振定",
+          "LOC:5:11:市直湖前小区",
+          "ORG:14:22:杜园科技有限公司"
+        ],
+        "text": "谢振定前往市直湖前小区并加入杜园科技有限公司"
+      },
+      {
+        "actual": [
+          "PER:0:2:陆军"
+        ],
+        "expected": [],
+        "text": "陆军正在组织训练"
+      },
+      {
+        "actual": [
+          "ORG:1:4:所大学"
+        ],
+        "expected": [],
+        "text": "这所大学今天开学"
+      },
+      {
+        "actual": [
+          "PER:0:3:齐千郡",
+          "LOC:5:9:毛官营村",
+          "ORG:13:20:山科技有限公司"
+        ],
+        "expected": [
+          "PER:0:3:齐千郡",
+          "LOC:5:9:毛官营村",
+          "ORG:12:20:通山科技有限公司"
+        ],
+        "text": "齐千郡前往毛官营村并加入通山科技有限公司"
+      },
+      {
+        "actual": [
+          "PER:6:8:焦山"
+        ],
+        "expected": [
+          "LOC:6:8:焦山"
+        ],
+        "text": "货物已经抵达焦山"
+      },
+      {
+        "actual": [
+          "LOC:2:7:广东东莞市",
+          "LOC:8:10:平镇"
+        ],
+        "expected": [
+          "LOC:2:10:广东东莞市常平镇"
+        ],
+        "text": "他从广东东莞市常平镇返回"
+      },
+      {
+        "actual": [
+          "PER:0:3:游本嘉",
+          "LOC:6:9:华一村",
+          "ORG:12:20:东王化营智算中心"
+        ],
+        "expected": [
+          "PER:0:3:游本嘉",
+          "LOC:5:9:新华一村",
+          "ORG:12:20:东王化营智算中心"
+        ],
+        "text": "游本嘉前往新华一村并加入东王化营智算中心"
+      }
+    ],
+    "false_positives_per_1k_chars": 8.327687443541102,
+    "gold": 3299,
+    "negative_cases": 500,
+    "negative_false_positives": 100,
+    "precision": 0.9135657779079989,
+    "predicted": 3413,
+    "recall": 0.9451348893604122,
+    "total": 3199,
+    "tp": 3118
+  }
+}

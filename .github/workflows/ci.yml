@@ -1,0 +1,22 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  nxbmes:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Verify BMES artifact
+        run: |
+          python3 tools/check_entity_bmes_quality.py
+          python3 tools/export_nxbmes.py
+          python3 tools/check_nxbmes.py

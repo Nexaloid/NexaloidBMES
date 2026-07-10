@@ -1,0 +1,412 @@
+{
+  "badcases": {
+    "by_type": {
+      "LOC": {
+        "f1": 0.5,
+        "gold": 5,
+        "precision": 0.6666666666666666,
+        "predicted": 3,
+        "recall": 0.4,
+        "tp": 2
+      },
+      "ORG": {
+        "f1": 1.0,
+        "gold": 3,
+        "precision": 1.0,
+        "predicted": 3,
+        "recall": 1.0,
+        "tp": 3
+      },
+      "PER": {
+        "f1": 0.6666666666666665,
+        "gold": 4,
+        "precision": 0.6,
+        "predicted": 5,
+        "recall": 0.75,
+        "tp": 3
+      }
+    },
+    "exact": 11,
+    "exact_rate": 0.7857142857142857,
+    "f1": 0.6956521739130435,
+    "failures": [
+      {
+        "actual": [
+          "PER:0:2:长春"
+        ],
+        "expected": [
+          "LOC:0:2:长春"
+        ],
+        "text": "长春市长春节前发表讲话"
+      },
+      {
+        "actual": [
+          "PER:0:4:小王明天"
+        ],
+        "expected": [
+          "PER:0:2:小王"
+        ],
+        "text": "小王明天参加会议"
+      },
+      {
+        "actual": [
+          "LOC:2:6:日本东京"
+        ],
+        "expected": [
+          "LOC:2:4:日本",
+          "LOC:4:6:东京"
+        ],
+        "text": "他从日本东京返回"
+      }
+    ],
+    "false_positives_per_1k_chars": 23.25581395348837,
+    "gold": 12,
+    "negative_cases": 5,
+    "negative_false_positives": 0,
+    "precision": 0.7272727272727273,
+    "predicted": 11,
+    "recall": 0.6666666666666666,
+    "total": 14,
+    "tp": 8
+  },
+  "dev": {
+    "by_type": {
+      "LOC": {
+        "f1": 0.31364764267990075,
+        "gold": 1200,
+        "precision": 0.38773006134969323,
+        "predicted": 815,
+        "recall": 0.2633333333333333,
+        "tp": 316
+      },
+      "ORG": {
+        "f1": 0.7238866396761134,
+        "gold": 1198,
+        "precision": 0.7028301886792453,
+        "predicted": 1272,
+        "recall": 0.7462437395659433,
+        "tp": 894
+      },
+      "PER": {
+        "f1": 0.28789614356624665,
+        "gold": 900,
+        "precision": 0.2193135543920884,
+        "predicted": 1719,
+        "recall": 0.41888888888888887,
+        "tp": 377
+      }
+    },
+    "exact": 1456,
+    "exact_rate": 0.45528455284552843,
+    "f1": 0.4467905405405405,
+    "failures": [
+      {
+        "actual": [
+          "PER:0:3:列车正",
+          "LOC:5:9:向复康路"
+        ],
+        "expected": [
+          "LOC:6:9:复康路"
+        ],
+        "text": "列车正在驶向复康路"
+      },
+      {
+        "actual": [
+          "PER:0:4:会议中心"
+        ],
+        "expected": [],
+        "text": "会议中心今天正常开放"
+      },
+      {
+        "actual": [
+          "PER:0:3:列车正"
+        ],
+        "expected": [
+          "LOC:6:8:闸河"
+        ],
+        "text": "列车正在驶向闸河"
+      },
+      {
+        "actual": [
+          "LOC:0:2:学校"
+        ],
+        "expected": [],
+        "text": "学校附近今天道路拥堵"
+      },
+      {
+        "actual": [
+          "PER:0:4:会议中心"
+        ],
+        "expected": [],
+        "text": "会议中心今天正常开放"
+      },
+      {
+        "actual": [
+          "ORG:0:19:永康水族证券交易所派吴沃尧到永康水族乡"
+        ],
+        "expected": [
+          "ORG:0:9:永康水族证券交易所",
+          "PER:10:13:吴沃尧",
+          "LOC:14:19:永康水族乡"
+        ],
+        "text": "永康水族证券交易所派吴沃尧到永康水族乡调研"
+      },
+      {
+        "actual": [
+          "PER:0:3:列车正",
+          "LOC:5:10:向财富名城"
+        ],
+        "expected": [
+          "LOC:6:10:财富名城"
+        ],
+        "text": "列车正在驶向财富名城"
+      },
+      {
+        "actual": [
+          "PER:0:3:胜利街"
+        ],
+        "expected": [
+          "LOC:0:3:胜利街"
+        ],
+        "text": "胜利街今天出现降温"
+      },
+      {
+        "actual": [
+          "PER:0:3:昨日李",
+          "LOC:7:9:会场"
+        ],
+        "expected": [
+          "PER:2:5:李慈铭"
+        ],
+        "text": "昨日李慈铭抵达会场"
+      },
+      {
+        "actual": [
+          "PER:0:3:活动将"
+        ],
+        "expected": [
+          "LOC:4:7:洛哈镇"
+        ],
+        "text": "活动将在洛哈镇举行"
+      },
+      {
+        "actual": [
+          "PER:0:3:易家湾"
+        ],
+        "expected": [
+          "LOC:0:3:易家湾"
+        ],
+        "text": "易家湾今天出现降温"
+      },
+      {
+        "actual": [
+          "PER:0:3:活动将"
+        ],
+        "expected": [
+          "LOC:4:7:西沙河"
+        ],
+        "text": "活动将在西沙河举行"
+      },
+      {
+        "actual": [
+          "PER:0:3:列车正",
+          "LOC:6:10:月形湾村"
+        ],
+        "expected": [
+          "LOC:6:10:月形湾村"
+        ],
+        "text": "列车正在驶向月形湾村"
+      },
+      {
+        "actual": [
+          "PER:0:4:老石坎村"
+        ],
+        "expected": [
+          "LOC:0:4:老石坎村"
+        ],
+        "text": "老石坎村今天出现降温"
+      },
+      {
+        "actual": [
+          "PER:0:4:会议中心"
+        ],
+        "expected": [],
+        "text": "会议中心今天正常开放"
+      }
+    ],
+    "false_positives_per_1k_chars": 62.18647535240871,
+    "gold": 3298,
+    "negative_cases": 500,
+    "negative_false_positives": 428,
+    "precision": 0.4169732002101944,
+    "predicted": 3806,
+    "recall": 0.48120072771376593,
+    "total": 3198,
+    "tp": 1587
+  },
+  "test": {
+    "by_type": {
+      "LOC": {
+        "f1": 0.38811513463324043,
+        "gold": 1200,
+        "precision": 0.4381551362683438,
+        "predicted": 954,
+        "recall": 0.34833333333333333,
+        "tp": 418
+      },
+      "ORG": {
+        "f1": 0.6486880466472303,
+        "gold": 1200,
+        "precision": 0.5764248704663213,
+        "predicted": 1544,
+        "recall": 0.7416666666666667,
+        "tp": 890
+      },
+      "PER": {
+        "f1": 0.25189141076991545,
+        "gold": 900,
+        "precision": 0.2100965107646622,
+        "predicted": 1347,
+        "recall": 0.31444444444444447,
+        "tp": 283
+      }
+    },
+    "exact": 1044,
+    "exact_rate": 0.32625,
+    "f1": 0.44534639608117566,
+    "failures": [
+      {
+        "actual": [],
+        "expected": [
+          "PER:4:6:蔡博"
+        ],
+        "text": "我们欢迎蔡博到访"
+      },
+      {
+        "actual": [
+          "LOC:2:9:期居住在王桥村"
+        ],
+        "expected": [
+          "LOC:6:9:王桥村"
+        ],
+        "text": "他长期居住在王桥村"
+      },
+      {
+        "actual": [
+          "PER:0:2:元兴",
+          "ORG:5:9:新的研究"
+        ],
+        "expected": [
+          "PER:0:2:元兴"
+        ],
+        "text": "元兴加入了新的研究项目"
+      },
+      {
+        "actual": [
+          "LOC:2:9:期居住在玉塘村"
+        ],
+        "expected": [
+          "LOC:6:9:玉塘村"
+        ],
+        "text": "他长期居住在玉塘村"
+      },
+      {
+        "actual": [],
+        "expected": [
+          "PER:4:7:金履祥"
+        ],
+        "text": "我们欢迎金履祥到访"
+      },
+      {
+        "actual": [
+          "LOC:4:8:楚雄州出"
+        ],
+        "expected": [
+          "LOC:4:7:楚雄州"
+        ],
+        "text": "考察队从楚雄州出发"
+      },
+      {
+        "actual": [
+          "LOC:2:14:期居住在福建晋江市陈埭镇"
+        ],
+        "expected": [
+          "LOC:6:14:福建晋江市陈埭镇"
+        ],
+        "text": "他长期居住在福建晋江市陈埭镇"
+      },
+      {
+        "actual": [
+          "ORG:0:4:这家医院"
+        ],
+        "expected": [],
+        "text": "这家医院附近正在施工"
+      },
+      {
+        "actual": [],
+        "expected": [
+          "PER:4:7:许昱华"
+        ],
+        "text": "我们欢迎许昱华到访"
+      },
+      {
+        "actual": [
+          "ORG:0:8:华之友超智算中心",
+          "PER:11:15:平台部署"
+        ],
+        "expected": [
+          "ORG:0:8:华之友超智算中心"
+        ],
+        "text": "华之友超智算中心完成了平台部署"
+      },
+      {
+        "actual": [
+          "PER:8:10:申请"
+        ],
+        "expected": [],
+        "text": "大学毕业生提交了申请"
+      },
+      {
+        "actual": [
+          "LOC:2:9:期居住在澌波乡"
+        ],
+        "expected": [
+          "LOC:6:9:澌波乡"
+        ],
+        "text": "他长期居住在澌波乡"
+      },
+      {
+        "actual": [],
+        "expected": [
+          "LOC:6:9:碧绿湖"
+        ],
+        "text": "他长期居住在碧绿湖"
+      },
+      {
+        "actual": [
+          "LOC:2:9:期居住在东阳街"
+        ],
+        "expected": [
+          "LOC:6:9:东阳街"
+        ],
+        "text": "他长期居住在东阳街"
+      },
+      {
+        "actual": [],
+        "expected": [
+          "PER:4:7:曹曦文"
+        ],
+        "text": "我们欢迎曹曦文到访"
+      }
+    ],
+    "false_positives_per_1k_chars": 61.51410949183997,
+    "gold": 3300,
+    "negative_cases": 500,
+    "negative_false_positives": 358,
+    "precision": 0.41378413524057217,
+    "predicted": 3845,
+    "recall": 0.4821212121212121,
+    "total": 3200,
+    "tp": 1591
+  }
+}

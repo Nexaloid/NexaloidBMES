@@ -1,0 +1,42 @@
+{
+  "annotator": "deepseek-v4-flash",
+  "entity_count": 9,
+  "entity_types": [
+    "PER",
+    "LOC",
+    "ORG",
+    "FAC",
+    "PRODUCT",
+    "BRAND",
+    "SOFTWARE",
+    "HARDWARE",
+    "MODEL",
+    "DISEASE",
+    "DRUG",
+    "PATHOGEN",
+    "GENE_PROTEIN",
+    "CHEMICAL",
+    "MATERIAL",
+    "SPECIES",
+    "EVENT",
+    "WORK",
+    "LAW",
+    "TECH"
+  ],
+  "output_sha256": "cfd9ef0469afbbe72b70f0111169a36def2ff64afd23a6477590526e308b2ce7",
+  "scan_rows": 10000,
+  "schema": "nexaloid.entity_llm_labels.v2",
+  "seed": 41,
+  "sentence_count": 100,
+  "source": "G:/WordHub/jd/train.csv",
+  "source_license": "Apache-2.0; preserve original dataset attribution",
+  "source_sha256": "2ce877661d070433a63d4b231af0645adba715e102bcc2ab2c7df16dff79c933",
+  "type_counts": {
+    "BRAND": 2,
+    "EVENT": 1,
+    "FAC": 1,
+    "ORG": 1,
+    "PER": 3,
+    "WORK": 1
+  }
+}

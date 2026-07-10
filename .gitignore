@@ -1,0 +1,15 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.zig-cache/
+zig-cache/
+zig-out/
+*.dll
+*.dylib
+*.so
+*.exe
+*.pdb
+*.lib
+dist/
+build/

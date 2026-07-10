@@ -1,0 +1,44 @@
+{
+  "filters": {
+    "org_limit": 9000,
+    "org_rule": "filtered place stem + deterministic organization suffix",
+    "person_limit": 6000,
+    "person_rule": "2-4 Han chars; common Chinese surname; ambiguity stoplist",
+    "place_limit": 9000,
+    "place_rule": "2-8 Han chars; administrative/geographic suffix or core-place whitelist"
+  },
+  "license": "MIT",
+  "row_counts": {
+    "dev": 3198,
+    "test": 3200,
+    "train": 24059
+  },
+  "schema": "nexaloid.entity_hmm_data.v1",
+  "seed": 17,
+  "source_ids": [
+    "thuocl"
+  ],
+  "sources": {
+    "person": "G:/WordHub/THUOCL/data/THUOCL_lishimingren.txt",
+    "person_sha256": "d0e5094016e6db8c55d363dc022f48f7b1753cf6d07e216f63cf522ce8e53605",
+    "place": "G:/WordHub/THUOCL/data/THUOCL_diming.txt",
+    "place_sha256": "ca5574399da5750a2c36dc373f36e31a66ed1f8a4b21646df6ca44ec0b888d89"
+  },
+  "surface_counts": {
+    "dev": {
+      "LOC": 900,
+      "ORG": 898,
+      "PER": 600
+    },
+    "test": {
+      "LOC": 900,
+      "ORG": 900,
+      "PER": 600
+    },
+    "train": {
+      "LOC": 7200,
+      "ORG": 7169,
+      "PER": 4800
+    }
+  }
+}

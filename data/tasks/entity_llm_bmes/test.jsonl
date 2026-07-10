@@ -1,0 +1,160 @@
+{"group_id":"ed91da49111f45e4","source":"data/tasks/entity_llm_reconciled/qa_labels.jsonl","text":"我一进游戏就出现加载建筑失败，。","spans":[]}
+{"group_id":"cb5a92d66eca2325","source":"data/tasks/entity_llm_reconciled/qa_labels.jsonl","text":"延长生命 提高生活质量","spans":[]}
+{"group_id":"5f569e075f4cacf8","source":"data/tasks/entity_llm_reconciled/wiki_labels.jsonl","text":"一般来说，历史学仅仅研究前者，即社会史。","spans":[]}
+{"group_id":"8d6c6fd4a73a6e3b","source":"data/tasks/entity_llm_reconciled/news_labels.jsonl","text":"跨越全球170多个国家和地区的标志性建筑分别在各自当地时间的19号晚8点30分熄灯一小时，以响应2016年“地球一小时”活动的号召。","spans":[[54,59,"EVENT"]]}
+{"group_id":"34eea7947de43579","source":"data/tasks/entity_llm_reconciled/jd_labels.jsonl","text":"还差 弄来了 不能用 靠 好水","spans":[]}
+{"group_id":"da8352f22779aecc","source":"data/tasks/entity_llm_reconciled/jd_labels.jsonl","text":"物流给力，较书店便宜","spans":[]}
+{"group_id":"844f99370b924cea","source":"data/tasks/entity_llm_reconciled/wiki_labels.jsonl","text":"有时公众会误以为计算机科学就是解决计算机问题的事业（比如信息技术），或者只是与使用计算机的经验有关，如玩游戏、上网或者文字处理。","spans":[[8,13,"TECH"],[28,32,"TECH"]]}
+{"group_id":"02323410ac242405","source":"data/tasks/entity_llm_reconciled/qa_labels.jsonl","text":"装备及召唤兽需求：高躲闪装备，加法加灵套装，14级法仙用武器。","spans":[]}
+{"group_id":"dcd1b0aa143a302f","source":"data/tasks/entity_llm_reconciled/news_labels.jsonl","text":"张高丽参加广西代表团审议。","spans":[[0,3,"PER"],[5,7,"LOC"]]}
+{"group_id":"014eb7af29a0ff68","source":"data/tasks/entity_llm_reconciled/wiki_labels.jsonl","text":"原子分子与光物理学发展出的实验与理论技术，时常会被应用于其它科学领域，例如，化学、天文物理学、生物学、医药学等等。","spans":[[0,9,"TECH"],[38,40,"TECH"],[41,46,"TECH"],[47,50,"TECH"],[51,54,"TECH"]]}
+{"group_id":"844f99370b924cea","source":"data/tasks/entity_llm_reconciled/wiki_labels.jsonl","text":"现代社会见证了计算机从仅仅由专业人士使用到被广大用户接受的重大转变。","spans":[]}
+{"group_id":"5a9c135545617e97","source":"data/tasks/entity_llm_reconciled/qa_labels.jsonl","text":"并且要先放10—15分钟，让蒜氨酸和蒜酶在空气中结合产生大蒜素后再食用。","spans":[[14,17,"CHEMICAL"],[18,20,"CHEMICAL"],[28,31,"CHEMICAL"]]}
+{"group_id":"17cac94548aa102a","source":"data/tasks/entity_llm_reconciled/qa_labels.jsonl","text":"1, 确保没有病毒","spans":[]}
+{"group_id":"005d313e6db02581","source":"data/tasks/entity_llm_reconciled/qa_labels.jsonl","text":"一周内不可剧烈运动，注意避免大便过于干燥。","spans":[]}
+{"group_id":"17cac94548aa102a","source":"data/tasks/entity_llm_reconciled/qa_labels.jsonl","text":"如果不会,直接跳到3","spans":[]}
+{"group_id":"55c0286ed09a5384","source":"data/tasks/entity_llm_reconciled/wiki_labels.jsonl","text":"2017年，LIGO和室女座干涉仪共同探测到首个来自双中子星（GW170817）的引力波讯号。","spans":[[6,10,"ORG"],[11,17,"FAC"],[31,39,"EVENT"]]}
+{"group_id":"f5320f444d69b5bb","source":"data/tasks/entity_llm_reconciled/qa_labels.jsonl","text":"另外，我的一位有一辆95年的高尔夫，行驶15万公里，价格2万左右如何。","spans":[[14,17,"PRODUCT"]]}
+{"group_id":"55c0286ed09a5384","source":"data/tasks/entity_llm_reconciled/wiki_labels.jsonl","text":"密度较高的物质成为了气体云和最早期的恒星──第三星族恒星。","spans":[[22,28,"SPECIES"]]}
+{"group_id":"61ee8e1b42294218","source":"data/tasks/entity_llm_reconciled/news_labels.jsonl","text":"人民日报将发表社论《唱响新时代劳动者之歌——写在“五一”国际劳动节》。","spans":[[0,4,"ORG"],[10,20,"WORK"]]}
+{"group_id":"55c0286ed09a5384","source":"data/tasks/entity_llm_reconciled/wiki_labels.jsonl","text":"未来的中微子探测器能力将会提高，有望探测到宇宙射线冲击大气时所发出的粒子。","spans":[]}
+{"group_id":"d2d3fcd936b3fc4b","source":"data/tasks/entity_llm_reconciled/news_labels.jsonl","text":"学员普遍反映，通过党校学习培训，进一步增强了在思想上政治上行动上同以习近平同志为总书记的党中央保持高度一致的自觉性和坚定性；","spans":[[34,37,"PER"],[44,47,"ORG"]]}
+{"group_id":"c5af24cb09927ec8","source":"data/tasks/entity_llm_reconciled/jd_labels.jsonl","text":"领口太大不能穿，拿去修要30快钱亏大发了","spans":[]}
+{"group_id":"014eb7af29a0ff68","source":"data/tasks/entity_llm_reconciled/wiki_labels.jsonl","text":"他说：“至大无外，谓之大一；","spans":[]}
+{"group_id":"55c0286ed09a5384","source":"data/tasks/entity_llm_reconciled/wiki_labels.jsonl","text":"考古学家相信，在大津巴布韦和廷巴克图发现的建筑遗迹很有可能是天文台。","spans":[[8,13,"LOC"],[14,18,"LOC"]]}
+{"group_id":"246928bb4cce7faa","source":"data/tasks/entity_llm_reconciled/news_labels.jsonl","text":"2月份，全国电影市场票房近70亿元，超越北美市场，跃居全球第一。","spans":[[20,22,"LOC"]]}
+{"group_id":"10df6509c2e11a02","source":"data/tasks/entity_llm_reconciled/news_labels.jsonl","text":"七是完善法律统一适用机制，提高司法公信力。","spans":[]}
+{"group_id":"543ebca9c786ac5d","source":"data/tasks/entity_llm_reconciled/wiki_labels.jsonl","text":"相对于一般教育，青少年罪犯应该要以教养为主。","spans":[]}
+{"group_id":"014eb7af29a0ff68","source":"data/tasks/entity_llm_reconciled/wiki_labels.jsonl","text":"像托勒密和亚里士多德提出的理论中，有些就与日常所能观察到的事实相悖。","spans":[[1,4,"PER"],[5,10,"PER"]]}
+{"group_id":"cf48a7cf93db2be0","source":"data/tasks/entity_llm_reconciled/news_labels.jsonl","text":"习近平强调，哲学社会科学领域是知识分子密集的地方，要把这支队伍关心好、培养好、使用好，让广大哲学社会科学工作者成为先进思想的倡导者、学术研究的开拓者、社会风尚的引领者、党执政的坚定支持者。","spans":[[0,3,"PER"]]}
+{"group_id":"45013163e36a4c7a","source":"data/tasks/entity_llm_reconciled/news_labels.jsonl","text":"本届比赛是2008年之后我国承接的残疾人最大的单项赛事。","spans":[]}
+{"group_id":"40eb1495cc039534","source":"data/tasks/entity_llm_reconciled/news_labels.jsonl","text":"要加强人文交流，发展民心相通工程；","spans":[]}
+{"group_id":"4f977fb646094c36","source":"data/tasks/entity_llm_reconciled/news_labels.jsonl","text":"而警方此前曾发出警告，要求寺庙限制使用烟花。","spans":[]}
+{"group_id":"97ad993bc3283ee4","source":"data/tasks/entity_llm_reconciled/news_labels.jsonl","text":"说起自己为什么要入党？","spans":[]}
+{"group_id":"175a2b9a8f0030fb","source":"data/tasks/entity_llm_reconciled/qa_labels.jsonl","text":"治静脉曲张国内什么医院最好？","spans":[[1,5,"DISEASE"]]}
+{"group_id":"d0b64abaa30a806f","source":"data/tasks/entity_llm_reconciled/news_labels.jsonl","text":"同样在本周，国际货币基金组织最新一期《世界经济展望》中，将今明两年全球经济、美国经济、欧元区经济、日本经济的增速预测全部下调。","spans":[[6,14,"ORG"],[19,25,"WORK"],[38,40,"LOC"],[43,46,"LOC"],[49,51,"LOC"]]}
+{"group_id":"55c0286ed09a5384","source":"data/tasks/entity_llm_reconciled/wiki_labels.jsonl","text":"与大多数现代科学领域不同的是，业余天文学家至今仍在为天文学作出重大的贡献。","spans":[]}
+{"group_id":"014eb7af29a0ff68","source":"data/tasks/entity_llm_reconciled/wiki_labels.jsonl","text":"海什木在著名著作《》（Kitab al-Manazir）里，坚定地驳斥了古希腊的视觉理论——发射说，并且给出新理论。","spans":[[0,3,"PER"],[11,27,"WORK"]]}
+{"group_id":"55c0286ed09a5384","source":"data/tasks/entity_llm_reconciled/wiki_labels.jsonl","text":"X射线天文学在X射线范围观测天体。","spans":[[0,6,"TECH"],[7,10,"TECH"]]}
+{"group_id":"a58c2411931aa5f8","source":"data/tasks/entity_llm_reconciled/qa_labels.jsonl","text":"头饰 _ 武生帽：2/9","spans":[]}
+{"group_id":"f21234a13db51b8a","source":"data/tasks/entity_llm_reconciled/jd_labels.jsonl","text":"质量太差，根本就充不进电","spans":[]}
+{"group_id":"43dc94a78e7df60d","source":"data/tasks/entity_llm_reconciled/wiki_labels.jsonl","text":"他是GOODS项目（General Object-Oriented Distributed Systems，通用面向对象分布式系统）的领导者。","spans":[[2,7,"SOFTWARE"],[10,65,"SOFTWARE"]]}
+{"group_id":"3091ad36626f906b","source":"data/tasks/entity_llm_reconciled/qa_labels.jsonl","text":"使用时每次取药末少许，加凡士林调成糊状，外敷于肚脐孔处，敷料包扎，胶布固定，每日换药1次，连用1～2周。","spans":[[12,15,"CHEMICAL"]]}
+{"group_id":"ab46a842a081169f","source":"data/tasks/entity_llm_reconciled/news_labels.jsonl","text":"出席《巴黎协定》高级别签署仪式的国家主席习近平特使、国务院副总理张高丽21日在纽约联合国总部会见了联合国秘书长潘基文。","spans":[[3,7,"LAW"],[20,23,"PER"],[26,29,"ORG"],[32,35,"PER"],[39,41,"LOC"],[41,46,"ORG"],[55,58,"PER"]]}
+{"group_id":"cfeada5ce292fbc0","source":"data/tasks/entity_llm_reconciled/qa_labels.jsonl","text":"并且还配置了自动雨刷，让人感到非常方便。","spans":[]}
+{"group_id":"e991e2f9c71c8a74","source":"data/tasks/entity_llm_reconciled/qa_labels.jsonl","text":"/script TargetNearestEnemy()","spans":[]}
+{"group_id":"014eb7af29a0ff68","source":"data/tasks/entity_llm_reconciled/wiki_labels.jsonl","text":"对于粒子物理学所研究的物理系统，那些关于空间、时间、物质、能量的普通常识不再适用，必须加以修改。","spans":[]}
+{"group_id":"55c0286ed09a5384","source":"data/tasks/entity_llm_reconciled/wiki_labels.jsonl","text":"银河系由气体、尘埃、恒星等各种天体所组成，这些天体绕银河系的中心公转，并通过相互引力束缚在一起。","spans":[[0,3,"FAC"],[26,29,"FAC"]]}
+{"group_id":"55c0286ed09a5384","source":"data/tasks/entity_llm_reconciled/wiki_labels.jsonl","text":"对银河系以外天体的研究分支包括：星系的形成和演化、星系分类、活动星系观测以及星系群和星系团的观测。","spans":[[1,4,"LOC"]]}
+{"group_id":"f571b68521c788a9","source":"data/tasks/entity_llm_reconciled/news_labels.jsonl","text":"据九州电力公司消息，距离震区不远的鹿儿岛川内核电站没有发现异常，仍在正常运转。","spans":[[1,7,"ORG"],[17,20,"LOC"],[20,25,"FAC"]]}
+{"group_id":"87613098f36eb96c","source":"data/tasks/entity_llm_reconciled/jd_labels.jsonl","text":"拿到后，孩子很高兴。","spans":[]}
+{"group_id":"32bccf36e5c5fbcb","source":"data/tasks/entity_llm_reconciled/qa_labels.jsonl","text":"8、三层：从北面一直沿外侧前走（如遇到死路返回到叉路口，从另一路的外侧前走），可绕到记录点，要记录点北路到一阵法，下到二层。","spans":[]}
+{"group_id":"8327abe84bc4aef5","source":"data/tasks/entity_llm_reconciled/news_labels.jsonl","text":"19日上午，习近平首先来到人民日报社调研。","spans":[[6,9,"PER"],[13,18,"ORG"]]}
+{"group_id":"844f99370b924cea","source":"data/tasks/entity_llm_reconciled/wiki_labels.jsonl","text":"它属于计算机科学学科，既受影响于也影响着数学、软件工程和语言学。","spans":[[3,8,"TECH"],[20,22,"TECH"],[23,27,"TECH"],[28,31,"TECH"]]}
+{"group_id":"543ebca9c786ac5d","source":"data/tasks/entity_llm_reconciled/wiki_labels.jsonl","text":"自有人类社会以来就存在著犯罪，刚开始还没有法律观念，对于犯罪行为时常诉诸武力以求自立救助，而形成「以牙还牙，以眼还眼」的复仇制度，此即刑罚的原始型态。","spans":[]}
+{"group_id":"55c0286ed09a5384","source":"data/tasks/entity_llm_reconciled/wiki_labels.jsonl","text":"太阳系行星是在46亿年前的原行星盘中诞生的。","spans":[[0,3,"LOC"]]}
+{"group_id":"2099bf606b60ce88","source":"data/tasks/entity_llm_reconciled/qa_labels.jsonl","text":"一般的做法是恢复系统在安装前的各项配置，然后分析安装程序新装入部分使用的资源和可能发生的冲突，逐步排除故障原因。","spans":[]}
+{"group_id":"014eb7af29a0ff68","source":"data/tasks/entity_llm_reconciled/wiki_labels.jsonl","text":"例如，1912年，图利奥·勒维奇维塔获知阿尔伯特·爱因斯坦在探索重力的相对性理论中，遇到一些挫折，他便力劝爱因斯坦学习张量微积分。","spans":[[9,18,"PER"],[20,29,"PER"],[53,57,"PER"],[59,64,"TECH"]]}
+{"group_id":"844f99370b924cea","source":"data/tasks/entity_llm_reconciled/wiki_labels.jsonl","text":"信息论与信息量化相关，由克劳德·香农创建，用于寻找信号处理操作的根本极限，比如压缩数据和可靠的数据存储与通讯。","spans":[[0,3,"TECH"],[12,18,"PER"]]}
+{"group_id":"014eb7af29a0ff68","source":"data/tasks/entity_llm_reconciled/wiki_labels.jsonl","text":"理论研究和实验研究一般是分开进行的，然而它们彼此之间息息相关、缺一不可。","spans":[]}
+{"group_id":"10adf87a6cec5c01","source":"data/tasks/entity_llm_reconciled/qa_labels.jsonl","text":"2、进入“个人首页维护”。","spans":[]}
+{"group_id":"40eb1495cc039534","source":"data/tasks/entity_llm_reconciled/news_labels.jsonl","text":"欢迎仪式后，中共中央总书记、国家主席习近平同老挝人民革命党中央总书记、国家主席本扬举行会谈。","spans":[[6,10,"ORG"],[18,21,"PER"],[22,29,"ORG"],[39,41,"PER"]]}
+{"group_id":"8327abe84bc4aef5","source":"data/tasks/entity_llm_reconciled/news_labels.jsonl","text":"在国内部，一位刚从河北正定县“走基层”回来的记者向总书记汇报塔元庄村的新变化，习近平请他转达对乡亲们的问候。","spans":[[9,14,"LOC"],[30,34,"LOC"],[39,42,"PER"]]}
+{"group_id":"844f99370b924cea","source":"data/tasks/entity_llm_reconciled/wiki_labels.jsonl","text":"研究编码的目的在于设计更高效、可靠的数据传输方法。","spans":[]}
+{"group_id":"2f36e7d465381b5a","source":"data/tasks/entity_llm_reconciled/qa_labels.jsonl","text":"大箱问题下载了大箱后进高地或完成了普通级到恶梦级大箱中的物品除了。","spans":[]}
+{"group_id":"4baea5ff91cd31d6","source":"data/tasks/entity_llm_reconciled/qa_labels.jsonl","text":"你的隐形有泳镜的保护。","spans":[]}
+{"group_id":"7b6b925e99631622","source":"data/tasks/entity_llm_reconciled/qa_labels.jsonl","text":"缺蛋白锌、蛋白硒、蛋白质会导致前列腺炎的抗病菌能力下降而容易感染病菌，形成前列腺炎。","spans":[[15,19,"DISEASE"],[37,41,"DISEASE"]]}
+{"group_id":"a20ac506d4574d2b","source":"data/tasks/entity_llm_reconciled/jd_labels.jsonl","text":"日期和时间调不过来太垃圾了糊弄人么果断砸了","spans":[]}
+{"group_id":"43dc94a78e7df60d","source":"data/tasks/entity_llm_reconciled/wiki_labels.jsonl","text":"克利斯登·奈加特生前最后的研究兴趣是（the didactical aspects of introductory teaching of programming）。","spans":[[0,8,"PER"]]}
+{"group_id":"964ab77e9cd32710","source":"data/tasks/entity_llm_reconciled/qa_labels.jsonl","text":"6、其他详细证明材料","spans":[]}
+{"group_id":"b85c8008537dcc76","source":"data/tasks/entity_llm_reconciled/news_labels.jsonl","text":"叙军方宣布在阿勒颇暂时停火。","spans":[[0,1,"LOC"],[6,9,"LOC"]]}
+{"group_id":"647207fc3f4f0f6c","source":"data/tasks/entity_llm_reconciled/news_labels.jsonl","text":"全国政协十二届四次会议12日下午在人民大会堂举行第四次全体会议。","spans":[[0,11,"EVENT"],[17,22,"FAC"],[24,31,"EVENT"]]}
+{"group_id":"014eb7af29a0ff68","source":"data/tasks/entity_llm_reconciled/wiki_labels.jsonl","text":"实验检试必须拥有抓出科学理论的瑕疵的能力。","spans":[]}
+{"group_id":"cead0ea04d6d81dd","source":"data/tasks/entity_llm_reconciled/news_labels.jsonl","text":"明天出版的《人民日报》将发表署名为“国纪平”的文章，题目是《为中东和平发展注入强大正能量——写在2016年习近平主席首次出访之际》。","spans":[[6,10,"WORK"],[18,21,"PER"],[30,64,"WORK"]]}
+{"group_id":"1f323c18a3d08470","source":"data/tasks/entity_llm_reconciled/qa_labels.jsonl","text":"还说对于这种情况 , 只能用一种名字好长的药 , 打点滴 ,一天打两小瓶 , 两小瓶170 ,一共要打10天左右 . 我想请问各位朋友","spans":[]}
+{"group_id":"84c86d0b51244b0f","source":"data/tasks/entity_llm_reconciled/news_labels.jsonl","text":"只要是在中国注册的企业，无论是内资还是外资、独资还是合资，都将一视同仁对待，提供公平竞争的环境。","spans":[[4,6,"LOC"]]}
+{"group_id":"001d599d97ccd8ae","source":"data/tasks/entity_llm_reconciled/qa_labels.jsonl","text":"据动物试验，少量持续服可促进有关新陈代谢的腺体发育，多量则可促进有关生殖的腺体发育。","spans":[]}
+{"group_id":"39dc0ea2c2ab6be8","source":"data/tasks/entity_llm_reconciled/news_labels.jsonl","text":"中国人民大学副校长 社会学教授 洪大用：习总书记特别强调，必须要结合中国实际，特别是要结合中国社会的重大变革来进行研究，我想文化自觉和理论自觉是中国特色社会学发展的一个必经之路。","spans":[[0,6,"ORG"],[16,19,"PER"],[34,36,"LOC"],[45,47,"LOC"],[72,74,"LOC"]]}
+{"group_id":"bb904ec22c53d691","source":"data/tasks/entity_llm_reconciled/news_labels.jsonl","text":"希望两国政府继承和弘扬传统友谊，扩大和加强各领域务实合作，切实打造中尼命运共同体。","spans":[]}
+{"group_id":"66664bab11e7427b","source":"data/tasks/entity_llm_reconciled/qa_labels.jsonl","text":"为什么输入帐号后,说玩家资料不一致。","spans":[]}
+{"group_id":"a4969ee411d20d7e","source":"data/tasks/entity_llm_reconciled/qa_labels.jsonl","text":"C:\\%windows\\%system32\\friendly.exe","spans":[[0,34,"SOFTWARE"]]}
+{"group_id":"4a3e2349eb2577a1","source":"data/tasks/entity_llm_reconciled/qa_labels.jsonl","text":"若将长效避孕药与短效避孕药同服，或将长效避孕药当短效药服用，其药量增加，会造成肝功能损害，出现黄疸，常常需要1年多的治疗才能恢复健康。","spans":[[2,7,"DRUG"],[8,13,"DRUG"],[18,23,"DRUG"],[24,27,"DRUG"],[47,49,"DISEASE"]]}
+{"group_id":"55c0286ed09a5384","source":"data/tasks/entity_llm_reconciled/wiki_labels.jsonl","text":"在用视差测量附近恒星的距离后，可以通过比对，推测遥远恒星的各种属性。","spans":[]}
+{"group_id":"cfddee57496af69b","source":"data/tasks/entity_llm_reconciled/news_labels.jsonl","text":"桑植县地处武陵山区，属于全国14个集中连片特困地区之一，贫困人口11.9万人，其中3.6万人居住在深山峡谷和高寒山区，想脱贫，先要搬下山。","spans":[[0,3,"LOC"],[5,9,"LOC"]]}
+{"group_id":"13cd5f6030ccf84d","source":"data/tasks/entity_llm_reconciled/qa_labels.jsonl","text":"有的，最晚的车是六点半的，普通班很多呢。","spans":[]}
+{"group_id":"42695e6ae34def70","source":"data/tasks/entity_llm_reconciled/qa_labels.jsonl","text":"简单的烹调方法，加上均衡的营养成分，以及漂亮的摆设方式，让准妈妈们胃口大开。","spans":[]}
+{"group_id":"095e8e63b7aaa95a","source":"data/tasks/entity_llm_reconciled/news_labels.jsonl","text":"基金寻求在5年内筹集38.5亿美元，向难民儿童提供最长5年的教育服务。","spans":[]}
+{"group_id":"95f09a100b872201","source":"data/tasks/entity_llm_reconciled/news_labels.jsonl","text":"国际社会定分止争，既要推动复谈、落实和约，也要主持公道、伸张正义，二者缺一不可。","spans":[]}
+{"group_id":"844f99370b924cea","source":"data/tasks/entity_llm_reconciled/wiki_labels.jsonl","text":"它是一个系统的软件设计方法，涉及工程实践到软件的应用。","spans":[]}
+{"group_id":"e17052cdaa0d3c9d","source":"data/tasks/entity_llm_reconciled/news_labels.jsonl","text":"在19号的访问过程中，中沙签署了一系列合作协议，两国元首还宣布建立中沙全面战略伙伴关系。","spans":[]}
+{"group_id":"543ebca9c786ac5d","source":"data/tasks/entity_llm_reconciled/wiki_labels.jsonl","text":"常习犯人则想要犯罪，或基于习惯、天性而具有犯罪的本性。","spans":[]}
+{"group_id":"af89a687bd69e1c1","source":"data/tasks/entity_llm_reconciled/news_labels.jsonl","text":"在十二届全国人大四次会议开幕前两个小时，人民大会堂北大厅通道，也就是这些天大家关注的“部长通道”已经热闹起来，上百位媒体记者早早地把设备架设好，期待着更多的部长能走上采访台。","spans":[[1,12,"EVENT"],[20,25,"FAC"],[25,28,"FAC"],[43,47,"FAC"]]}
+{"group_id":"81d27c52a7fb3e1c","source":"data/tasks/entity_llm_reconciled/news_labels.jsonl","text":"戏里，他精益求精;","spans":[]}
+{"group_id":"014eb7af29a0ff68","source":"data/tasks/entity_llm_reconciled/wiki_labels.jsonl","text":"理论物理学者试图发展数学模型，这模型必须能够合理地解释其所针对的物理现象，这模型的预测还必须与实验数据相符合。","spans":[]}
+{"group_id":"fdc62bb616ea8c6b","source":"data/tasks/entity_llm_reconciled/jd_labels.jsonl","text":"收到后包装破损，香油瓶也碎&hellip;","spans":[]}
+{"group_id":"014eb7af29a0ff68","source":"data/tasks/entity_llm_reconciled/wiki_labels.jsonl","text":"阐明物理的基础定律、了解物质是怎样在原子与分子层次组构而成、明白光与物质之间的相互作用、发展出新技术与新器件，这些是原子分子与光物理学的中心目标。","spans":[[2,4,"TECH"],[18,20,"CHEMICAL"],[21,23,"CHEMICAL"],[58,60,"CHEMICAL"],[60,62,"CHEMICAL"],[63,67,"TECH"]]}
+{"group_id":"b007a0ca7906d459","source":"data/tasks/entity_llm_reconciled/news_labels.jsonl","text":"过去在宁夏银川，行政部门之间由于信息不共享，申请办理行政审批事项的企业及个人常常要在多个“信息孤岛”之间奔走协调。","spans":[[3,7,"LOC"]]}
+{"group_id":"e63ac20ba648a77f","source":"data/tasks/entity_llm_reconciled/qa_labels.jsonl","text":"现在是第3天了全身都能动，但右手5个手指不能动，个别手指有痛感和发麻感觉，右手胳膊手臂可以动。","spans":[]}
+{"group_id":"331f47145b7c18d1","source":"data/tasks/entity_llm_reconciled/qa_labels.jsonl","text":"大家知道这是为什么吗？","spans":[]}
+{"group_id":"3571832925acbf86","source":"data/tasks/entity_llm_reconciled/qa_labels.jsonl","text":"当托尔威力F3时，你就","spans":[[1,3,"PER"]]}
+{"group_id":"4f14d74a3a762baa","source":"data/tasks/entity_llm_reconciled/qa_labels.jsonl","text":"[url= ]中国视频教程基地 [/url]","spans":[]}
+{"group_id":"6b185bab5f84b217","source":"data/tasks/entity_llm_reconciled/qa_labels.jsonl","text":"D、IP卡只能充值手机，回拨卡可以充值手机/固话/小灵通。","spans":[]}
+{"group_id":"51f686b5ac2b5888","source":"data/tasks/entity_llm_reconciled/news_labels.jsonl","text":"毛里塔尼亚籍嫌疑人艾哈梅达在巴马科一个居民区被捕，警方同时发现了大批爆炸物和枪支。","spans":[[0,5,"LOC"],[9,13,"PER"],[14,17,"LOC"]]}
+{"group_id":"e6e12174d1bee8cd","source":"data/tasks/entity_llm_reconciled/jd_labels.jsonl","text":"生活可以清贫，但不可以无书。","spans":[]}
+{"group_id":"6dd4bee009c2023a","source":"data/tasks/entity_llm_reconciled/qa_labels.jsonl","text":"推荐技能 骑宠 抗性 恢复 巫术 单石 属性反转 毒击。","spans":[]}
+{"group_id":"014eb7af29a0ff68","source":"data/tasks/entity_llm_reconciled/wiki_labels.jsonl","text":"物理学是自然科学中最基础的学科之一。","spans":[]}
+{"group_id":"6dae33c6984b001b","source":"data/tasks/entity_llm_reconciled/news_labels.jsonl","text":"中方愿同加方一道，全面落实两国元首重要共识，共同推动峰会成果在加蓬落地，使中加关系成为中非合作共赢、共同发展的典范。","spans":[[31,33,"LOC"]]}
+{"group_id":"0ca718673507d8e1","source":"data/tasks/entity_llm_reconciled/news_labels.jsonl","text":"多好的同志啊，他们一步一摇地爬出了草地，却没能坚持走到班佑，他们带走的是伤病和饥饿，留下的却是曙光和胜利。","spans":[[27,29,"LOC"]]}
+{"group_id":"014eb7af29a0ff68","source":"data/tasks/entity_llm_reconciled/wiki_labels.jsonl","text":"物理学是由这些定律精致地建构而成。","spans":[]}
+{"group_id":"014eb7af29a0ff68","source":"data/tasks/entity_llm_reconciled/wiki_labels.jsonl","text":"三国时期，杨泉著有《物理论》，是最早的书名含有「物理」一词的著作。","spans":[[0,4,"EVENT"],[5,7,"PER"],[10,13,"WORK"]]}
+{"group_id":"647207fc3f4f0f6c","source":"data/tasks/entity_llm_reconciled/news_labels.jsonl","text":"他强调，“九二共识”是维系两岸关系和平稳定的定海神针，要两岸携手，深化两岸交流与合作，加强青年交流，共创双赢。","spans":[[5,9,"LAW"]]}
+{"group_id":"7c295e181086f4ad","source":"data/tasks/entity_llm_reconciled/qa_labels.jsonl","text":"头盔：强3青铁冠 =7精7智（能强多少看人品）","spans":[]}
+{"group_id":"c4c679a20e9360dd","source":"data/tasks/entity_llm_reconciled/news_labels.jsonl","text":"一是推动“一带一路”倡议同各国发展战略相对接。","spans":[[5,9,"LAW"]]}
+{"group_id":"9cd6b39d35d7c511","source":"data/tasks/entity_llm_reconciled/news_labels.jsonl","text":"这次走访慰问的对象为两部分：一是建国前入党的农村老党员、建国前入党未享受离退休待遇的城镇老党员；","spans":[]}
+{"group_id":"32e2a637dd2c84f0","source":"data/tasks/entity_llm_reconciled/qa_labels.jsonl","text":"一般的生产商是一输出幅度降低1/2为标准测出频响宽度，这就是说以-B为标准，但是由于所采用的测试标准不同，有一些产品是以-10dB为测量的。","spans":[]}
+{"group_id":"1b3cd5f6c974bbcf","source":"data/tasks/entity_llm_reconciled/news_labels.jsonl","text":"2号，大批伊朗民众冲击沙特驻伊朗大使馆。","spans":[[5,7,"LOC"],[11,13,"LOC"],[14,16,"LOC"],[16,19,"FAC"]]}
+{"group_id":"492ba6ca201fb2a0","source":"data/tasks/entity_llm_reconciled/wiki_labels.jsonl","text":"1991年初Self项目移至Sun Microsystems Laboratories Inc.，并且在1992年发布了2.0版。","spans":[[6,12,"SOFTWARE"],[14,48,"ORG"],[60,64,"MODEL"]]}
+{"group_id":"55c0286ed09a5384","source":"data/tasks/entity_llm_reconciled/wiki_labels.jsonl","text":"外行星包括木星、土星、天王星和海王星，均为气态巨行星。","spans":[[5,7,"SPECIES"],[8,10,"SPECIES"],[11,14,"SPECIES"],[15,18,"SPECIES"]]}
+{"group_id":"7ab20ceaf148168c","source":"data/tasks/entity_llm_reconciled/news_labels.jsonl","text":"这一阶段和谈重点是在第一阶段会谈形成的原则性共识基础上，讨论有关政府重组、修订宪法等叙利亚政治过渡的具体问题。","spans":[[42,45,"LOC"]]}
+{"group_id":"06d9246efb870b8f","source":"data/tasks/entity_llm_reconciled/qa_labels.jsonl","text":"加血随意 想加4功1血的时候就加4功1血，想加3功2血的时候就3功2血的加。","spans":[]}
+{"group_id":"55c0286ed09a5384","source":"data/tasks/entity_llm_reconciled/wiki_labels.jsonl","text":"考古天文学利用考古学和人类学证据，研究远古或传统天文学在文化中的角色和地位。","spans":[[0,5,"TECH"],[7,10,"TECH"],[11,14,"TECH"]]}
+{"group_id":"2099bf606b60ce88","source":"data/tasks/entity_llm_reconciled/qa_labels.jsonl","text":"一、排除系统“假”死机现象","spans":[]}
+{"group_id":"cb05c95ca44695e6","source":"data/tasks/entity_llm_reconciled/qa_labels.jsonl","text":"我该怎样才可以做回师们任务?","spans":[]}
+{"group_id":"9191889e2085b7b9","source":"data/tasks/entity_llm_reconciled/news_labels.jsonl","text":"联合国粮食计划署8号宣布，叙利亚交战双方已经同意让救援物资进入马达亚、卡夫拉亚和福阿三个长期被围困的小镇，避免更大的人道主义危机。","spans":[[0,8,"ORG"],[13,16,"LOC"],[31,34,"LOC"],[35,39,"LOC"],[40,42,"LOC"]]}
+{"group_id":"f60b409354fbd608","source":"data/tasks/entity_llm_reconciled/qa_labels.jsonl","text":"对面只是有一些东西和宝物而已，不是太重要。","spans":[]}
+{"group_id":"3161a1a8f951cc6e","source":"data/tasks/entity_llm_reconciled/news_labels.jsonl","text":"东莞市统计局的最新数据显示，2015年，东莞的GDP迈入“千亿美元”俱乐部，同比增长8%。","spans":[[0,6,"ORG"],[20,22,"LOC"]]}
+{"group_id":"014eb7af29a0ff68","source":"data/tasks/entity_llm_reconciled/wiki_labels.jsonl","text":"量子力学论述发生于原子层级与亚原子层级各种现象的离散性质，以及在关于这些现象的描述里的粒子与波动的互补性质。","spans":[]}
+{"group_id":"a10249ba4c401b72","source":"data/tasks/entity_llm_reconciled/news_labels.jsonl","text":"二要紧紧围绕中央重大决策部署的贯彻落实正向发力，围绕重大改革举措的落实、重要政策贯彻执行情况和“十三五”时期重要约束性指标等建言献策，开展民主监督，发扬民主，畅所欲言，促进相关工作改进和加强，推动中央决策贯彻落实。","spans":[[6,8,"ORG"],[48,51,"LAW"]]}
+{"group_id":"86e2a75b4cefbc29","source":"data/tasks/entity_llm_reconciled/qa_labels.jsonl","text":"你说的是整容代码吧","spans":[]}
+{"group_id":"014eb7af29a0ff68","source":"data/tasks/entity_llm_reconciled/wiki_labels.jsonl","text":"唯象专家计算理论模型的预测，并将这些预测跟实验数据做比较。","spans":[]}
+{"group_id":"09d1040bb6d51d34","source":"data/tasks/entity_llm_reconciled/news_labels.jsonl","text":"2号，一艘载有700多名乘客的美国邮轮抵达古巴哈瓦那港。","spans":[[15,17,"LOC"],[21,23,"LOC"],[23,27,"FAC"]]}
+{"group_id":"74e243db3b1f54ef","source":"data/tasks/entity_llm_reconciled/qa_labels.jsonl","text":"祝宝宝健康成长。","spans":[]}
+{"group_id":"55c0286ed09a5384","source":"data/tasks/entity_llm_reconciled/wiki_labels.jsonl","text":"重元素在衰变后成为轻元素，使核合成周期可以延续下去。","spans":[]}
+{"group_id":"c72f93f17bfb3d2b","source":"data/tasks/entity_llm_reconciled/qa_labels.jsonl","text":"是饭前疼，还是饭后疼？","spans":[]}
+{"group_id":"014eb7af29a0ff68","source":"data/tasks/entity_llm_reconciled/wiki_labels.jsonl","text":"这凸显出数学的重要性与适应性。","spans":[]}
+{"group_id":"844f99370b924cea","source":"data/tasks/entity_llm_reconciled/wiki_labels.jsonl","text":"计算机安全是计算机技术的一个分支，其目标包括保护信息免受未经授权的访问、中断和修改，同时为系统的预期用户保持系统的可访问性和可用性。","spans":[[0,5,"TECH"],[6,11,"TECH"]]}
+{"group_id":"55c0286ed09a5384","source":"data/tasks/entity_llm_reconciled/wiki_labels.jsonl","text":"绝大数穿过地球的中微子都来自太阳，但也曾经有探测到24颗来自SN 1987A超新星爆发的中微子。","spans":[[30,38,"EVENT"]]}
+{"group_id":"014eb7af29a0ff68","source":"data/tasks/entity_llm_reconciled/wiki_labels.jsonl","text":"高能量大强子对撞器已开始侦测14TeV能量域，精致的后标准模型超对称理论所预测的粒子，或是约占宇宙物质85%的暗物质，这些都是大强子对撞器的探索目标。","spans":[[0,9,"FAC"],[14,19,"MODEL"],[26,36,"TECH"],[55,58,"CHEMICAL"],[63,69,"FAC"]]}
+{"group_id":"98fb99f1a6c292bc","source":"data/tasks/entity_llm_reconciled/news_labels.jsonl","text":"四川：妇女居家就业 巧手织就致富路。","spans":[[0,2,"LOC"]]}
+{"group_id":"014eb7af29a0ff68","source":"data/tasks/entity_llm_reconciled/wiki_labels.jsonl","text":"另外，粒子物理学者设计与发展做研究所需要的高能量加速器、探测器与电脑程式。","spans":[]}
+{"group_id":"33d9f8b470cb5f17","source":"data/tasks/entity_llm_reconciled/qa_labels.jsonl","text":"3、男子献血可减少癌症的发生率：体内铁元素含量过低易患缺铁性贫血及行动迟缓，过高则适得其反。","spans":[[9,11,"DISEASE"],[27,32,"DISEASE"]]}
+{"group_id":"014eb7af29a0ff68","source":"data/tasks/entity_llm_reconciled/wiki_labels.jsonl","text":"电磁学的分支有静电学、静磁学、电动力学等等。","spans":[[0,3,"TECH"],[7,10,"TECH"],[11,14,"TECH"],[15,19,"TECH"]]}
+{"group_id":"014eb7af29a0ff68","source":"data/tasks/entity_llm_reconciled/wiki_labels.jsonl","text":"物理学依赖数学来给出准确的公式、准确或近似的解答、定量的结果或预测。","spans":[]}
+{"group_id":"099a9fb7797820da","source":"data/tasks/entity_llm_reconciled/qa_labels.jsonl","text":"为了确保身体吸收足够的水分，专家建议在正常情况的骑乘前后，最好每小时秤量一次自己的体重。","spans":[]}
+{"group_id":"9cdeeed6ad0eb2d4","source":"data/tasks/entity_llm_reconciled/qa_labels.jsonl","text":"希望我的回答能给你帮助。","spans":[]}
+{"group_id":"c2ee92d2dfe481cd","source":"data/tasks/entity_llm_reconciled/jd_labels.jsonl","text":"很好用，很漂亮，质量好","spans":[]}
+{"group_id":"cf2f17f73e5fdd11","source":"data/tasks/entity_llm_reconciled/news_labels.jsonl","text":"已经装车的火箭又被拉回厂房。","spans":[]}
+{"group_id":"7e402625b0115d81","source":"data/tasks/entity_llm_reconciled/news_labels.jsonl","text":"会议指出，统筹推进县域内城乡义务教育一体化发展，对缩小城乡教育差距、促进教育公平具有重要意义。","spans":[]}
+{"group_id":"385d95e3a5bc9503","source":"data/tasks/entity_llm_reconciled/qa_labels.jsonl","text":"想买两车跑山路和锦标 ,但不知道什么车比较好 ,各位高手指点下咯 !","spans":[]}
+{"group_id":"543ebca9c786ac5d","source":"data/tasks/entity_llm_reconciled/wiki_labels.jsonl","text":"仅有研究所而乏大学部的法学院所：","spans":[]}
+{"group_id":"60f5e17106a7d62b","source":"data/tasks/entity_llm_reconciled/qa_labels.jsonl","text":"可对于那些所谓的第 n 版 (n-versions) strcpy 或 strcat 函数 —— 比如 strncpy 或 strncat (其中 n = 1，2，3 ……) —— 也不可轻信。","spans":[]}
+{"group_id":"8a910125a1b00794","source":"data/tasks/entity_llm_reconciled/qa_labels.jsonl","text":"当然也可以在BIOS中干脆将设置用户口令的功能去除或是在BIOS中将系统口令的检测状态（“PASSWORD CHECK”）锁定为“SETUP”。","spans":[[6,10,"SOFTWARE"],[28,32,"SOFTWARE"]]}
+{"group_id":"5f569e075f4cacf8","source":"data/tasks/entity_llm_reconciled/wiki_labels.jsonl","text":"由于人主观的局限性，对客观的历史事件的认识是有限的，主观的认识不能完全符合客观的历史，因此只有不断改进逐渐逼近，这一过程同自然科学的过程一致。","spans":[]}
+{"group_id":"ee2c63dddd6b19c2","source":"data/tasks/entity_llm_reconciled/jd_labels.jsonl","text":"使用这款纤体霜不用节食吗，停用后不会反弹吧","spans":[]}
+{"group_id":"cf48a7cf93db2be0","source":"data/tasks/entity_llm_reconciled/news_labels.jsonl","text":"当代中国正经历着我国历史上最为广泛而深刻的社会变革，也正在进行着人类历史上最为宏大而独特的实践创新。","spans":[]}
+{"group_id":"33163c54b2cc0ff3","source":"data/tasks/entity_llm_reconciled/news_labels.jsonl","text":"会议认为，要坚持先规划后建设的原则，把握好城市定位，把每一寸土地都规划得清清楚楚后再开工建设。","spans":[]}
+{"group_id":"5e0a829954169a47","source":"data/tasks/entity_llm_reconciled/qa_labels.jsonl","text":"说明白点你就是越来越杀人不眨眼了。","spans":[]}
+{"group_id":"6a9707769ebd4781","source":"data/tasks/entity_llm_reconciled/news_labels.jsonl","text":"和李军一样，很多纪检监察工作人员每天都面对情与法的考验。","spans":[[1,3,"PER"]]}
+{"group_id":"4f977fb646094c36","source":"data/tasks/entity_llm_reconciled/news_labels.jsonl","text":"2013年10月，中央邦一座寺庙发生踩踏，造成100多人死亡。","spans":[[9,12,"LOC"]]}
+{"group_id":"02a5f28a78b51e39","source":"data/tasks/entity_llm_reconciled/news_labels.jsonl","text":"习近平在致辞中强调，捷克是欧洲重要国家，有着悠久历史和灿烂文化。","spans":[[0,3,"PER"],[10,12,"LOC"]]}
+{"group_id":"5ce7050149962f80","source":"data/tasks/entity_llm_reconciled/qa_labels.jsonl","text":"相反粉丝里才应该设置分组，这样分组可见才有意义啊亲。","spans":[]}

@@ -1,0 +1,208 @@
+{
+  "badcases": {
+    "by_type": {
+      "LOC": {
+        "f1": 0.7499999999999999,
+        "gold": 5,
+        "precision": 1.0,
+        "predicted": 3,
+        "recall": 0.6,
+        "tp": 3
+      },
+      "ORG": {
+        "f1": 1.0,
+        "gold": 3,
+        "precision": 1.0,
+        "predicted": 3,
+        "recall": 1.0,
+        "tp": 3
+      },
+      "PER": {
+        "f1": 1.0,
+        "gold": 4,
+        "precision": 1.0,
+        "predicted": 4,
+        "recall": 1.0,
+        "tp": 4
+      }
+    },
+    "candidate_count": 146,
+    "candidates_per_1k_chars": 525.1798561151079,
+    "chars": 278,
+    "exact": 27,
+    "exact_rate": 0.9642857142857143,
+    "f1": 0.9090909090909091,
+    "failures": [
+      {
+        "actual": [],
+        "expected": [
+          "LOC:2:4:日本",
+          "LOC:4:6:东京"
+        ],
+        "text": "他从日本东京返回"
+      }
+    ],
+    "false_positives_per_1k_chars": 0.0,
+    "gold": 12,
+    "negative_cases": 19,
+    "negative_false_positives": 0,
+    "precision": 1.0,
+    "predicted": 10,
+    "recall": 0.8333333333333334,
+    "total": 28,
+    "tp": 10
+  },
+  "dev": {
+    "by_type": {
+      "LOC": {
+        "f1": 0.8822721026110856,
+        "gold": 1200,
+        "precision": 0.9796541200406917,
+        "predicted": 983,
+        "recall": 0.8025,
+        "tp": 963
+      },
+      "ORG": {
+        "f1": 0.9987473903966597,
+        "gold": 1198,
+        "precision": 0.9991645781119465,
+        "predicted": 1197,
+        "recall": 0.998330550918197,
+        "tp": 1196
+      },
+      "PER": {
+        "f1": 0.8875154511742893,
+        "gold": 900,
+        "precision": 1.0,
+        "predicted": 718,
+        "recall": 0.7977777777777778,
+        "tp": 718
+      }
+    },
+    "candidate_count": 23360,
+    "candidates_per_1k_chars": 654.6534764453661,
+    "chars": 35683,
+    "exact": 2779,
+    "exact_rate": 0.868980612883052,
+    "f1": 0.9286636539703034,
+    "failures": [
+      {
+        "actual": [
+          "LOC:4:8:驶向闸河"
+        ],
+        "expected": [
+          "LOC:6:8:闸河"
+        ],
+        "text": "列车正在驶向闸河"
+      },
+      {
+        "actual": [],
+        "expected": [
+          "PER:2:5:李慈铭"
+        ],
+        "text": "昨日李慈铭抵达会场"
+      },
+      {
+        "actual": [],
+        "expected": [
+          "LOC:0:4:老石坎村"
+        ],
+        "text": "老石坎村今天出现降温"
+      },
+      {
+        "actual": [
+          "ORG:0:6:金桥中心医院",
+          "LOC:10:13:金桥路"
+        ],
+        "expected": [
+          "ORG:0:6:金桥中心医院",
+          "PER:7:9:涂凌",
+          "LOC:10:13:金桥路"
+        ],
+        "text": "金桥中心医院派涂凌到金桥路调研"
+      }
+    ],
+    "false_positives_per_1k_chars": 0.5885155396127008,
+    "gold": 3298,
+    "negative_cases": 500,
+    "negative_false_positives": 0,
+    "precision": 0.9927536231884058,
+    "predicted": 2898,
+    "recall": 0.8723468768950879,
+    "total": 3198,
+    "tp": 2877
+  },
+  "test": {
+    "by_type": {
+      "LOC": {
+        "f1": 0.9356984478935698,
+        "gold": 1200,
+        "precision": 1.0,
+        "predicted": 1055,
+        "recall": 0.8791666666666667,
+        "tp": 1055
+      },
+      "ORG": {
+        "f1": 1.0,
+        "gold": 1200,
+        "precision": 1.0,
+        "predicted": 1200,
+        "recall": 1.0,
+        "tp": 1200
+      },
+      "PER": {
+        "f1": 0.9486581096849475,
+        "gold": 900,
+        "precision": 0.9987714987714987,
+        "predicted": 814,
+        "recall": 0.9033333333333333,
+        "tp": 813
+      }
+    },
+    "candidate_count": 26149,
+    "candidates_per_1k_chars": 713.6346269308444,
+    "chars": 36642,
+    "exact": 2968,
+    "exact_rate": 0.9275,
+    "f1": 0.9634165489087768,
+    "failures": [
+      {
+        "actual": [],
+        "expected": [
+          "PER:4:6:蔡博"
+        ],
+        "text": "我们欢迎蔡博到访"
+      },
+      {
+        "actual": [],
+        "expected": [
+          "PER:0:4:明智光秀"
+        ],
+        "text": "明智光秀明天参加会议"
+      },
+      {
+        "actual": [],
+        "expected": [
+          "LOC:0:4:三门峡市"
+        ],
+        "text": "三门峡市迎来了许多游客"
+      },
+      {
+        "actual": [],
+        "expected": [
+          "LOC:0:3:东浜村"
+        ],
+        "text": "东浜村迎来了许多游客"
+      }
+    ],
+    "false_positives_per_1k_chars": 0.02729108673107363,
+    "gold": 3300,
+    "negative_cases": 500,
+    "negative_false_positives": 0,
+    "precision": 0.9996741609644836,
+    "predicted": 3069,
+    "recall": 0.9296969696969697,
+    "total": 3200,
+    "tp": 3068
+  }
+}

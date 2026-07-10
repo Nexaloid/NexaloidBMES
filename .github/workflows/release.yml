@@ -1,0 +1,82 @@
+name: Release BMES Artifact
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Release tag, for example v0.1.0
+        required: true
+      confirm_license_clearance:
+        description: Confirm every bundled data/model source is cleared for this release
+        required: true
+        type: boolean
+        default: false
+      sync_repo:
+        description: Optional Nexaloid repo, for example Nexaloid/Nexaloid
+        required: false
+        default: ""
+      sync_branch:
+        description: Branch used when sync_repo is set
+        required: false
+        default: bmes/nxbmes-sync
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build artifact
+        run: |
+          test "${{ inputs.confirm_license_clearance }}" = "true" || { echo "License clearance confirmation is required" >&2; exit 1; }
+          python3 tools/check_entity_bmes_quality.py
+          python3 tools/export_nxbmes.py
+          python3 tools/check_nxbmes.py
+
+      - name: Publish GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_VERSION: ${{ inputs.version }}
+        run: |
+          case "$RELEASE_VERSION" in
+            v*) RELEASE_TAG="$RELEASE_VERSION" ;;
+            *) RELEASE_TAG="v$RELEASE_VERSION" ;;
+          esac
+          gh release view "$RELEASE_TAG" >/dev/null 2>&1 || \
+            gh release create "$RELEASE_TAG" --title "$RELEASE_TAG" --notes "Nexaloid BMES artifact $RELEASE_TAG"
+          gh release upload "$RELEASE_TAG" \
+            data/releases/bmes/entity_bmes_perceptron.nxbmes \
+            data/releases/bmes/entity_bmes_perceptron.nxbmes.sha256 \
+            data/releases/bmes/entity_bmes_perceptron.manifest.json \
+            --clobber
+
+      - name: Sync to Nexaloid
+        if: ${{ inputs.sync_repo != '' }}
+        env:
+          NEXALOID_SYNC_TOKEN: ${{ secrets.NEXALOID_SYNC_TOKEN }}
+          SYNC_REPO: ${{ inputs.sync_repo }}
+          SYNC_BRANCH: ${{ inputs.sync_branch }}
+          RELEASE_VERSION: ${{ inputs.version }}
+        run: |
+          test -n "${NEXALOID_SYNC_TOKEN:-}" || { echo "NEXALOID_SYNC_TOKEN is required" >&2; exit 1; }
+          target="$RUNNER_TEMP/nexaloid"
+          git clone "https://x-access-token:${NEXALOID_SYNC_TOKEN}@github.com/${SYNC_REPO}.git" "$target"
+          cd "$target"
+          git checkout -B "$SYNC_BRANCH"
+          cd "$GITHUB_WORKSPACE"
+          python3 tools/sync_nxbmes_to_nexaloid.py --nexaloid-dir "$target"
+          cd "$target"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/entity
+          git diff --cached --quiet && exit 0
+          git commit -m "chore: sync BMES artifact ${RELEASE_VERSION}"
+          git push origin HEAD:"$SYNC_BRANCH" --force
+          GH_TOKEN="$NEXALOID_SYNC_TOKEN" gh pr create \
+            --repo "$SYNC_REPO" --base main --head "$SYNC_BRANCH" \
+            --title "Sync BMES artifact ${RELEASE_VERSION}" \
+            --body "Syncs the .nxbmes artifact published by NexaloidBMES ${RELEASE_VERSION}." || true

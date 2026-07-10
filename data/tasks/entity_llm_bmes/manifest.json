@@ -1,0 +1,177 @@
+{
+  "entity_count": 2188,
+  "entity_types": [
+    "PER",
+    "LOC",
+    "ORG",
+    "FAC",
+    "PRODUCT",
+    "BRAND",
+    "SOFTWARE",
+    "HARDWARE",
+    "MODEL",
+    "DISEASE",
+    "DRUG",
+    "PATHOGEN",
+    "GENE_PROTEIN",
+    "CHEMICAL",
+    "MATERIAL",
+    "SPECIES",
+    "EVENT",
+    "WORK",
+    "LAW",
+    "TECH"
+  ],
+  "group_count": 1065,
+  "inputs": [
+    {
+      "path": "data/tasks/entity_llm_reconciled/jd_labels.jsonl",
+      "sentence_count": 100,
+      "sha256": "cfd9ef0469afbbe72b70f0111169a36def2ff64afd23a6477590526e308b2ce7"
+    },
+    {
+      "path": "data/tasks/entity_llm_reconciled/news_labels.jsonl",
+      "sentence_count": 500,
+      "sha256": "8f00b120de52f57e2e26309d3c51a633a08dbd9a24e0dd355e452ac2e983c12e"
+    },
+    {
+      "path": "data/tasks/entity_llm_reconciled/qa_labels.jsonl",
+      "sentence_count": 500,
+      "sha256": "9090f65e4993df162f331c4753e902f99520893408f0dc7609fc134b30984739"
+    },
+    {
+      "path": "data/tasks/entity_llm_reconciled/wiki_labels.jsonl",
+      "sentence_count": 500,
+      "sha256": "ebe4c7d19c921b0da733ab41c6de946a0ec5eb5e5304e48f1db81d23ba3b4fae"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "data/tasks/entity_llm_bmes/train.tsv",
+      "sha256": "6282bd726cc86b9fdabbbcc988cf4b107195e664de6f1bc7bee65e42b9c600c9"
+    },
+    {
+      "path": "data/tasks/entity_llm_bmes/train.jsonl",
+      "sha256": "d7f29fe75264ce1d1bbd98c2efea4126c7ddcb6fbd05535c0bc8f4a6f65e0579"
+    },
+    {
+      "path": "data/tasks/entity_llm_bmes/dev.tsv",
+      "sha256": "114362aee2f60520ad35915056aa1571adf9ec6885fea4170e104b74c7e3fe3f"
+    },
+    {
+      "path": "data/tasks/entity_llm_bmes/dev.jsonl",
+      "sha256": "98eb3716d4802520e803f6fa8efa32814cbb9a226497c65c11a975ba642a1f6c"
+    },
+    {
+      "path": "data/tasks/entity_llm_bmes/test.tsv",
+      "sha256": "e947f86381b6c84cd5633bd88a14542b90483f9eb04d67e696fdd90e429999b8"
+    },
+    {
+      "path": "data/tasks/entity_llm_bmes/test.jsonl",
+      "sha256": "4eb4a8f2f58e8dd99b0aad56024ba87b38578600e3a9cbbd1ce12d1f234e8e99"
+    }
+  ],
+  "schema": "nexaloid.entity_llm_bmes_data.v1",
+  "sentence_count": 1600,
+  "split_method": "source-stratified deterministic greedy grouping; target train/dev/test=80/10/10 by sentence count",
+  "splits": {
+    "dev": {
+      "character_count": 6010,
+      "entity_count": 192,
+      "group_count": 109,
+      "sentence_count": 160,
+      "type_counts": {
+        "BRAND": 6,
+        "CHEMICAL": 3,
+        "DISEASE": 9,
+        "DRUG": 2,
+        "EVENT": 11,
+        "FAC": 3,
+        "HARDWARE": 1,
+        "LAW": 3,
+        "LOC": 31,
+        "MODEL": 2,
+        "ORG": 13,
+        "PATHOGEN": 5,
+        "PER": 46,
+        "PRODUCT": 1,
+        "SOFTWARE": 6,
+        "TECH": 42,
+        "WORK": 8
+      }
+    },
+    "test": {
+      "character_count": 5886,
+      "entity_count": 169,
+      "group_count": 110,
+      "sentence_count": 160,
+      "type_counts": {
+        "CHEMICAL": 9,
+        "DISEASE": 6,
+        "DRUG": 4,
+        "EVENT": 7,
+        "FAC": 12,
+        "LAW": 4,
+        "LOC": 40,
+        "MODEL": 2,
+        "ORG": 15,
+        "PER": 25,
+        "PRODUCT": 1,
+        "SOFTWARE": 6,
+        "SPECIES": 5,
+        "TECH": 27,
+        "WORK": 6
+      }
+    },
+    "train": {
+      "character_count": 46079,
+      "entity_count": 1827,
+      "group_count": 846,
+      "sentence_count": 1280,
+      "type_counts": {
+        "BRAND": 11,
+        "CHEMICAL": 9,
+        "DISEASE": 62,
+        "DRUG": 29,
+        "EVENT": 124,
+        "FAC": 53,
+        "GENE_PROTEIN": 1,
+        "HARDWARE": 9,
+        "LAW": 56,
+        "LOC": 557,
+        "MATERIAL": 8,
+        "MODEL": 12,
+        "ORG": 241,
+        "PATHOGEN": 3,
+        "PER": 403,
+        "PRODUCT": 39,
+        "SOFTWARE": 84,
+        "SPECIES": 11,
+        "TECH": 44,
+        "WORK": 71
+      }
+    }
+  },
+  "type_counts": {
+    "BRAND": 17,
+    "CHEMICAL": 21,
+    "DISEASE": 77,
+    "DRUG": 35,
+    "EVENT": 142,
+    "FAC": 68,
+    "GENE_PROTEIN": 1,
+    "HARDWARE": 10,
+    "LAW": 63,
+    "LOC": 628,
+    "MATERIAL": 8,
+    "MODEL": 16,
+    "ORG": 269,
+    "PATHOGEN": 8,
+    "PER": 474,
+    "PRODUCT": 41,
+    "SOFTWARE": 96,
+    "SPECIES": 16,
+    "TECH": 113,
+    "WORK": 85
+  }
+}
