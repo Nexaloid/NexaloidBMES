@@ -11,4 +11,11 @@ Repository code is Apache-2.0. Data retains its upstream terms:
 | THUOCL | Legacy baseline and part of gazetteer | MIT |
 | WordHub gazetteer | Runtime lexical features | Mixed THUOCL, SogouDict, NLPDictionary and generated sources; not cleared for public release |
 
-Original WordHub corpora are intentionally not vendored. Label manifests record source paths and SHA-256 values. Do not publish the current labels, gazetteer, or release artifact as a commercially reusable dataset/model until the unknown and non-commercial sources are replaced or cleared.
+Original WordHub corpora are intentionally not vendored. Label manifests record source paths and SHA-256 values. Do not publish the internal mixed-source labels, gazetteer, or `releases/bmes/` artifact as a commercially reusable dataset/model until the unknown and non-commercial sources are replaced or cleared.
+
+## Public release subset
+
+`tasks/entity_release_*`, `resources/lexicon_thuocl_mit.txt`, and
+`releases/bmes-public/` are a separate release-safe pipeline. They use only
+THUOCL (MIT), JD comments (Apache-2.0), and deterministic synthetic examples.
+The public model is Apache-2.0 and ships with the required THUOCL notice.

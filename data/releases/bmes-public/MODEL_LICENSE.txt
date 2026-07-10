@@ -1,0 +1,7 @@
+SPDX-License-Identifier: Apache-2.0
+Distribution: public
+
+This notice applies to entity_bmes_perceptron.nxbmes. The model is trained
+only from Apache-2.0, MIT, and deterministic synthetic inputs documented in
+the accompanying manifest and THIRD_PARTY_NOTICES.txt. The Apache-2.0 text is
+included as APACHE-2.0.txt.

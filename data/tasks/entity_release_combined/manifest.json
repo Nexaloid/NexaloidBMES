@@ -1,0 +1,50 @@
+{
+  "inputs": [
+    {
+      "path": "data/tasks/entity_hmm/data_manifest.json",
+      "sha256": "29165944930e274da70bee67b83f2dbb768554644487a533e918efdce6d3b482"
+    },
+    {
+      "path": "data/tasks/entity_release_bmes/manifest.json",
+      "sha256": "34fafb655d2c79ab3c3e0fa61f69fa92eb0afb9abb2382e5f28be8233dc2dcc4"
+    },
+    {
+      "path": "data/tasks/entity_release_labels/manifest.json",
+      "sha256": "a55a456950450634af197758bf61a16212e810bccced8763e9abd1a3ce5dcc75"
+    }
+  ],
+  "license_spdx": "Apache-2.0",
+  "outputs": [
+    {
+      "path": "data/tasks/entity_release_combined/train.jsonl",
+      "sha256": "9164c914756b6a84aba365e866bef7911f2be6eb6fd40dff5ddd422034186536"
+    },
+    {
+      "path": "data/tasks/entity_release_combined/dev.jsonl",
+      "sha256": "0933489797e4e972b2fd46ed11ac460fe147c5816de4e5124f2731d7b11b9253"
+    },
+    {
+      "path": "data/tasks/entity_release_combined/test.jsonl",
+      "sha256": "5c187e13703915544f4617bf2478c7d1ef47a8d5b24aca6ff662df02487ae1fd"
+    }
+  ],
+  "schema": "nexaloid.entity_release_combined.v1",
+  "splits": {
+    "dev": {
+      "broad_sentences": 730,
+      "sentences": 3928
+    },
+    "test": {
+      "broad_sentences": 730,
+      "sentences": 3930
+    },
+    "train": {
+      "broad_sentences": 5840,
+      "sentences": 29899
+    }
+  },
+  "third_party": [
+    "THUOCL MIT",
+    "JD comments Apache-2.0"
+  ]
+}

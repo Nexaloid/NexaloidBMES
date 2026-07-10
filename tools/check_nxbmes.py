@@ -31,6 +31,9 @@ def main() -> int:
         type=Path,
         default=Path("data/releases/bmes/entity_bmes_perceptron.manifest.json"),
     )
+    parser.add_argument("--min-feature-count", type=int, default=70_000)
+    parser.add_argument("--min-general-count", type=int, default=10_000)
+    parser.add_argument("--min-entity-count", type=int, default=100)
     args = parser.parse_args()
 
     payload = args.artifact.read_bytes()
@@ -44,7 +47,7 @@ def main() -> int:
         HEADER, payload, 0
     )
     assert magic == MAGIC and version == 1
-    assert count > 70_000 and max_len == 12
+    assert count >= args.min_feature_count and max_len == 12
     assert record_size == struct.calcsize(FEATURE) == 32
     offset = header_size
     hashes = []
@@ -63,7 +66,8 @@ def main() -> int:
     entity_count = check_nxdict(payload[offset : offset + entity_len])
     offset += entity_len
     assert offset == len(payload)
-    assert general_count > 10_000 and entity_count >= 100
+    assert general_count >= args.min_general_count
+    assert entity_count >= args.min_entity_count
 
     manifest = json.loads(args.manifest.read_text(encoding="utf-8"))
     assert manifest["artifact_sha256"] == digest

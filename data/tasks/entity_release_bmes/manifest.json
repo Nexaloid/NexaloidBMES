@@ -1,0 +1,124 @@
+{
+  "entity_count": 6209,
+  "entity_types": [
+    "PER",
+    "LOC",
+    "ORG",
+    "FAC",
+    "PRODUCT",
+    "BRAND",
+    "SOFTWARE",
+    "HARDWARE",
+    "MODEL",
+    "DISEASE",
+    "DRUG",
+    "PATHOGEN",
+    "GENE_PROTEIN",
+    "CHEMICAL",
+    "MATERIAL",
+    "SPECIES",
+    "EVENT",
+    "WORK",
+    "LAW",
+    "TECH"
+  ],
+  "group_count": 4196,
+  "inputs": [
+    {
+      "path": "data/tasks/entity_release_labels/release_labels.jsonl",
+      "sentence_count": 7300,
+      "sha256": "a55f794f9cd56a0c26c0e06d45bf07e792a4fd913ed37aa45795f3cdd265e3dd"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "data/tasks/entity_release_bmes/train.tsv",
+      "sha256": "25acc5c2f4563606aa850e375b6267d50c9a50b68b703419f99464cccba081d4"
+    },
+    {
+      "path": "data/tasks/entity_release_bmes/train.jsonl",
+      "sha256": "cd9bed68811c0eb76ab09ebf8beed4d1a876574774fbddb4643510e8e7ae9c6d"
+    },
+    {
+      "path": "data/tasks/entity_release_bmes/dev.tsv",
+      "sha256": "4fb9482ec837292ed128d90773826962889904533646a23c6cce045b8856ee18"
+    },
+    {
+      "path": "data/tasks/entity_release_bmes/dev.jsonl",
+      "sha256": "b8d3b17520fc25494c98af782a65f45874077c5c37c01f7c9a0cecec50c6e150"
+    },
+    {
+      "path": "data/tasks/entity_release_bmes/test.tsv",
+      "sha256": "0c9ad7b1ba17e0766010b9d4126b8884e69fddffcfe1d38828f59b12dff2f898"
+    },
+    {
+      "path": "data/tasks/entity_release_bmes/test.jsonl",
+      "sha256": "7fcde48ff2f1653a71dddb5dd45b1cd00aa82ddf3b43063912137da9b66b8a87"
+    }
+  ],
+  "schema": "nexaloid.entity_llm_bmes_data.v1",
+  "sentence_count": 7300,
+  "split_method": "source-stratified deterministic greedy grouping; target train/dev/test=80/10/10 by sentence count",
+  "splits": {
+    "dev": {
+      "character_count": 10027,
+      "entity_count": 620,
+      "group_count": 420,
+      "sentence_count": 730,
+      "type_counts": {
+        "LAW": 40,
+        "LOC": 138,
+        "PER": 78,
+        "PRODUCT": 68,
+        "SPECIES": 74,
+        "TECH": 222
+      }
+    },
+    "test": {
+      "character_count": 10034,
+      "entity_count": 620,
+      "group_count": 420,
+      "sentence_count": 730,
+      "type_counts": {
+        "LAW": 62,
+        "LOC": 92,
+        "PER": 80,
+        "PRODUCT": 94,
+        "SPECIES": 62,
+        "TECH": 230
+      }
+    },
+    "train": {
+      "character_count": 80322,
+      "entity_count": 4969,
+      "group_count": 3356,
+      "sentence_count": 5840,
+      "type_counts": {
+        "BRAND": 2,
+        "EVENT": 1,
+        "FAC": 1,
+        "LAW": 498,
+        "LOC": 970,
+        "ORG": 1,
+        "PER": 645,
+        "PRODUCT": 638,
+        "SPECIES": 464,
+        "TECH": 1748,
+        "WORK": 1
+      }
+    }
+  },
+  "type_counts": {
+    "BRAND": 2,
+    "EVENT": 1,
+    "FAC": 1,
+    "LAW": 600,
+    "LOC": 1200,
+    "ORG": 1,
+    "PER": 803,
+    "PRODUCT": 800,
+    "SPECIES": 600,
+    "TECH": 2200,
+    "WORK": 1
+  }
+}

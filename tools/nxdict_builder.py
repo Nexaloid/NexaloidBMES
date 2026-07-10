@@ -9,11 +9,11 @@ from pathlib import Path
 MAGIC = b"NXDICT1\0"
 
 
-def read_rows(path: Path):
+def read_rows(path: Path, *, allow_hash_words: bool = False):
     with path.open("r", encoding="utf-8") as f:
         for line in f:
             line = line.strip()
-            if not line or line.startswith("#"):
+            if not line or (line.startswith("#") and not allow_hash_words):
                 continue
             parts = line.split()
             word = parts[0]
@@ -100,8 +100,10 @@ def build_dat(nodes):
     return codepoints, base, check, meta
 
 
-def build(in_path: Path, out_path: Path) -> tuple[int, int, int]:
-    rows = list(read_rows(in_path))
+def build(
+    in_path: Path, out_path: Path, *, allow_hash_words: bool = False
+) -> tuple[int, int, int]:
+    rows = list(read_rows(in_path, allow_hash_words=allow_hash_words))
     nodes, entries = build_trie(rows)
     codepoints, base, check, meta = build_dat(nodes)
 

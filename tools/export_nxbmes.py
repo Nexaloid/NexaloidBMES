@@ -39,7 +39,7 @@ def nxdict_blob(words: list[str], score: float) -> bytes:
             encoding="utf-8",
             newline="\n",
         )
-        build_nxdict(source, artifact)
+        build_nxdict(source, artifact, allow_hash_words=True)
         blob = artifact.read_bytes()
         return blob + b"\0" * (-len(blob) % 8)
 

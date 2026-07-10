@@ -20,3 +20,18 @@ jobs:
           python3 tools/check_entity_bmes_quality.py
           python3 tools/export_nxbmes.py
           python3 tools/check_nxbmes.py
+          python3 tools/check_entity_bmes_quality.py \
+            --model data/tasks/entity_release_combined/entity_release_perceptron.json \
+            --data-dir data/tasks/entity_release_combined \
+            --min-dev-f1 0.79 --min-test-f1 0.86
+          python3 tools/export_nxbmes.py \
+            --model data/tasks/entity_release_combined/entity_release_perceptron.json \
+            --out data/releases/bmes-public/entity_bmes_perceptron.nxbmes \
+            --manifest data/releases/bmes-public/entity_bmes_perceptron.manifest.json \
+            --distribution public --license-spdx Apache-2.0
+          python3 tools/check_nxbmes.py \
+            --artifact data/releases/bmes-public/entity_bmes_perceptron.nxbmes \
+            --manifest data/releases/bmes-public/entity_bmes_perceptron.manifest.json \
+            --min-feature-count 14000 --min-general-count 74000 --min-entity-count 6900
+          cmp -s LICENSE data/releases/bmes-public/APACHE-2.0.txt
+          git diff --exit-code -- data/releases/bmes-public

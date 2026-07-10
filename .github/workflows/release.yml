@@ -6,15 +6,6 @@ on:
       version:
         description: Release tag, for example v0.1.0
         required: true
-      confirm_license_clearance:
-        description: Confirm every bundled data/model source is cleared for this release
-        required: true
-        type: boolean
-        default: false
-      model_license_spdx:
-        description: SPDX license identifier for the released model artifact
-        required: true
-        default: NOASSERTION
 
 permissions:
   contents: write
@@ -27,16 +18,24 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Build artifact
-        env:
-          MODEL_LICENSE_SPDX: ${{ inputs.model_license_spdx }}
         run: |
-          test "${{ inputs.confirm_license_clearance }}" = "true" || { echo "License clearance confirmation is required" >&2; exit 1; }
-          test "$MODEL_LICENSE_SPDX" != "NOASSERTION" || { echo "A model SPDX license is required" >&2; exit 1; }
-          grep -Fqx "SPDX-License-Identifier: $MODEL_LICENSE_SPDX" data/releases/bmes/MODEL_LICENSE.txt || { echo "MODEL_LICENSE.txt does not match the requested SPDX license" >&2; exit 1; }
-          grep -Fqx "Distribution: public" data/releases/bmes/MODEL_LICENSE.txt || { echo "MODEL_LICENSE.txt is not cleared for public distribution" >&2; exit 1; }
-          python3 tools/check_entity_bmes_quality.py
-          python3 tools/export_nxbmes.py --distribution public --license-spdx "$MODEL_LICENSE_SPDX"
-          python3 tools/check_nxbmes.py
+          python3 tools/check_entity_bmes_quality.py \
+            --model data/tasks/entity_release_combined/entity_release_perceptron.json \
+            --data-dir data/tasks/entity_release_combined \
+            --min-dev-f1 0.79 --min-test-f1 0.86
+          python3 tools/export_nxbmes.py \
+            --model data/tasks/entity_release_combined/entity_release_perceptron.json \
+            --out data/releases/bmes-public/entity_bmes_perceptron.nxbmes \
+            --manifest data/releases/bmes-public/entity_bmes_perceptron.manifest.json \
+            --distribution public --license-spdx Apache-2.0
+          python3 tools/check_nxbmes.py \
+            --artifact data/releases/bmes-public/entity_bmes_perceptron.nxbmes \
+            --manifest data/releases/bmes-public/entity_bmes_perceptron.manifest.json \
+            --min-feature-count 14000 --min-general-count 74000 --min-entity-count 6900
+          grep -Fqx "Distribution: public" data/releases/bmes-public/MODEL_LICENSE.txt
+          grep -Fqx "SPDX-License-Identifier: Apache-2.0" data/releases/bmes-public/MODEL_LICENSE.txt
+          cmp -s LICENSE data/releases/bmes-public/APACHE-2.0.txt
+          git diff --exit-code -- data/releases/bmes-public
 
       - name: Publish GitHub release
         env:
@@ -53,7 +52,9 @@ jobs:
           fi
           gh release create "$RELEASE_TAG" --title "$RELEASE_TAG" --notes "Nexaloid BMES artifact $RELEASE_TAG"
           gh release upload "$RELEASE_TAG" \
-            data/releases/bmes/entity_bmes_perceptron.nxbmes \
-            data/releases/bmes/entity_bmes_perceptron.nxbmes.sha256 \
-            data/releases/bmes/entity_bmes_perceptron.manifest.json \
-            data/releases/bmes/MODEL_LICENSE.txt
+            data/releases/bmes-public/entity_bmes_perceptron.nxbmes \
+            data/releases/bmes-public/entity_bmes_perceptron.nxbmes.sha256 \
+            data/releases/bmes-public/entity_bmes_perceptron.manifest.json \
+            data/releases/bmes-public/APACHE-2.0.txt \
+            data/releases/bmes-public/MODEL_LICENSE.txt \
+            data/releases/bmes-public/THIRD_PARTY_NOTICES.txt

@@ -39,7 +39,12 @@ def main() -> int:
     parser.add_argument(
         "--artifact",
         type=Path,
-        default=ROOT / "data" / "releases" / "bmes" / "entity_bmes_perceptron.nxbmes",
+        default=ROOT / "data" / "releases" / "bmes-public" / "entity_bmes_perceptron.nxbmes",
+    )
+    parser.add_argument(
+        "--model",
+        type=Path,
+        default=ROOT / "data" / "tasks" / "entity_release_combined" / "entity_release_perceptron.json",
     )
     args = parser.parse_args()
 
@@ -68,6 +73,8 @@ def main() -> int:
             [
                 "zig",
                 "build-lib",
+                "-O",
+                "ReleaseFast",
                 "-dynamic",
                 "-lc",
                 f"-femit-bin={plugin}",
@@ -79,9 +86,10 @@ def main() -> int:
         try:
             tokenizer.load_plugin(plugin, json.dumps({"artifact": str(args.artifact)}))
             for text, expected in (
-                ("患者服用阿司匹林治疗冠心病。", "阿司匹林"),
-                ("苹果公司发布iPhone 16 Pro", "iPhone 16 Pro"),
-                ("该系统采用Transformer和CUDA加速。", "Transformer"),
+                ("阿强加入云海数据研究院", "云海数据研究院"),
+                ("团队计划前往北京开展调研。", "北京"),
+                ("观测人员记录到了梅花鹿。", "梅花鹿"),
+                ("展会上重点介绍了东风本田的配置。", "东风本田"),
             ):
                 entities = [
                     token.text
@@ -90,11 +98,7 @@ def main() -> int:
                 ]
                 assert expected in entities, (text, entities)
 
-            model = json.loads(
-                (ROOT / "data" / "tasks" / "entity_llm_bmes" / "entity_llm_perceptron_generic.json").read_text(
-                    encoding="utf-8"
-                )
-            )
+            model = json.loads(args.model.read_text(encoding="utf-8"))
             gazetteer = model["gazetteer"]
             lexicon = {
                 word
@@ -103,7 +107,7 @@ def main() -> int:
             }
             entity_lexicon = set(gazetteer["training_entity_words"])
             for split in ("dev", "test"):
-                path = ROOT / "data" / "tasks" / "entity_llm_bmes" / f"{split}.jsonl"
+                path = args.model.parent / f"{split}.jsonl"
                 for raw in path.read_text(encoding="utf-8").splitlines():
                     row = json.loads(raw)
                     text = row["text"]

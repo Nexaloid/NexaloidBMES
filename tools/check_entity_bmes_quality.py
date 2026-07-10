@@ -37,6 +37,13 @@ def main() -> int:
     require("generic", model.get("generic") is True)
     require("states", model.get("states") == ["O", "B", "M", "E", "S"])
 
+    data_manifest_path = args.data_dir / "manifest.json"
+    if data_manifest_path.is_file():
+        data_manifest = json.loads(data_manifest_path.read_text(encoding="utf-8"))
+        for item in data_manifest.get("inputs", []) + data_manifest.get("outputs", []):
+            path = Path(item["path"])
+            require(f"manifest input {path}", path.is_file() and sha256(path) == item["sha256"])
+
     gazetteer = model.get("gazetteer") or {}
     lexicon_path = Path(gazetteer.get("path", ""))
     require("gazetteer path", lexicon_path.is_file())

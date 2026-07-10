@@ -1,0 +1,87 @@
+{
+  "entity_count": 6209,
+  "entity_sentence_count": 6208,
+  "gazetteer": {
+    "path": "data/resources/lexicon_thuocl_mit.txt",
+    "sha256": "d2f53217cc9b82dc12788005fceaf94a306dcc6b540cd11bdf41c9c8783245e8",
+    "source_limits": {
+      "THUOCL_IT.txt": 3000,
+      "THUOCL_animal.txt": 2000,
+      "THUOCL_caijing.txt": 1500,
+      "THUOCL_car.txt": 1000,
+      "THUOCL_diming.txt": null,
+      "THUOCL_food.txt": 2000,
+      "THUOCL_law.txt": 3000,
+      "THUOCL_lishimingren.txt": null,
+      "THUOCL_medical.txt": 3000
+    },
+    "word_count": 74543
+  },
+  "generation": "deterministic templates plus existing DeepSeek-assisted JD labels",
+  "labels": {
+    "path": "data/tasks/entity_release_labels/release_labels.jsonl",
+    "sha256": "a55f794f9cd56a0c26c0e06d45bf07e792a4fd913ed37aa45795f3cdd265e3dd"
+  },
+  "license_spdx": "Apache-2.0",
+  "schema": "nexaloid.entity_release_labels.v1",
+  "sentence_count": 7300,
+  "third_party": [
+    {
+      "files": [
+        {
+          "name": "THUOCL_IT.txt",
+          "sha256": "e8cd42c9f5559735fa3bfb91515cbe051f991efd4a803038a1d5c0da85af3526"
+        },
+        {
+          "name": "THUOCL_animal.txt",
+          "sha256": "bcdc95a32fe713d4bc32957ae26174e3b464908e318e821c9abb295e90249145"
+        },
+        {
+          "name": "THUOCL_caijing.txt",
+          "sha256": "68e63d2009e59c6f388eeaa789d19b6a681657de3e8e56cc3479b21cd8548542"
+        },
+        {
+          "name": "THUOCL_car.txt",
+          "sha256": "58ffd756b89e8574852bc72c254276a1d7fa8821342eb3cbf3be73ca33ab921c"
+        },
+        {
+          "name": "THUOCL_chengyu.txt",
+          "sha256": "c339d5d6e37d4f8ecdcb82f2a02b7fdfc66796f0a5215155f2aff8a77e89a7eb"
+        },
+        {
+          "name": "THUOCL_diming.txt",
+          "sha256": "ca5574399da5750a2c36dc373f36e31a66ed1f8a4b21646df6ca44ec0b888d89"
+        },
+        {
+          "name": "THUOCL_food.txt",
+          "sha256": "084caa96ad4f976720003e9420097ba7cb5ddbb17f9f8c8f76bc4b8e0cc777fd"
+        },
+        {
+          "name": "THUOCL_law.txt",
+          "sha256": "8ef1a5f41052ac95dedde88b167c5031a43b3e0211bf128b6125736cc76ef7b2"
+        },
+        {
+          "name": "THUOCL_lishimingren.txt",
+          "sha256": "d0e5094016e6db8c55d363dc022f48f7b1753cf6d07e216f63cf522ce8e53605"
+        },
+        {
+          "name": "THUOCL_medical.txt",
+          "sha256": "a01f39f1677af0b6a620bbc68bf293e8e436f06248b74adb625cd61d9ad7bbcd"
+        },
+        {
+          "name": "THUOCL_poem.txt",
+          "sha256": "f7045571f57114a3a70d2eaaeec8f991897d536be808f93161709f1289c8108c"
+        }
+      ],
+      "license": "MIT",
+      "license_sha256": "db4b8cca414db4cf487b933d07a0514f77caf44f9f3d392f2bc9d7ba0d511c58",
+      "name": "THUOCL"
+    },
+    {
+      "license": "Apache-2.0; preserve original dataset attribution",
+      "manifest_sha256": "38c3165cbc5a91b19ff958ab4a8edcd37d7a45cb545e62a7e4f755238fb99748",
+      "name": "JD comments",
+      "readme_sha256": "3addbe699d0f103926ff0a4996a8143d0b266d3483a0bf99ba1b219342bf225a"
+    }
+  ]
+}

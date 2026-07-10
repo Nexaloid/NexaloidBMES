@@ -1,0 +1,47 @@
+{
+  "artifact": "data/releases/bmes-public/entity_bmes_perceptron.nxbmes",
+  "artifact_format": "nxbmes.v1",
+  "artifact_sha256": "b713b007fb26ed54e7fe57756b30ecc6d1a622c5c2f033772f73e08e0feb946e",
+  "distribution": {
+    "license_spdx": "Apache-2.0",
+    "scope": "public"
+  },
+  "entity_lexicon_size": 6959,
+  "feature_count": 14135,
+  "feature_hash": "fnv1a64",
+  "feature_record_size": 32,
+  "general_lexicon_size": 74543,
+  "inputs": {
+    "gazetteer": "data/resources/lexicon_thuocl_mit.txt",
+    "gazetteer_sha256": "d2f53217cc9b82dc12788005fceaf94a306dcc6b540cd11bdf41c9c8783245e8",
+    "model": "data/tasks/entity_release_combined/entity_release_perceptron.json",
+    "model_sha256": "6a0decd48630dfa83b48082c28e42b41010312834e90f44536e0f39abd7fa64e"
+  },
+  "max_word_len": 12,
+  "quality": {
+    "dev": {
+      "f1": 0.793487,
+      "fn": 848,
+      "fp": 750,
+      "precision": 0.803665,
+      "recall": 0.783563,
+      "tp": 3070
+    },
+    "test": {
+      "f1": 0.864987,
+      "fn": 659,
+      "fp": 359,
+      "precision": 0.900829,
+      "recall": 0.831888,
+      "tp": 3261
+    }
+  },
+  "schema": "nexaloid.bmes_manifest.v1",
+  "states": [
+    "O",
+    "B",
+    "M",
+    "E",
+    "S"
+  ]
+}

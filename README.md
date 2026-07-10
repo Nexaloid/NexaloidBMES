@@ -4,7 +4,17 @@ Broad Chinese entity-noun annotation, BMES boundary training, evaluation, runtim
 
 This repository owns the entity data and model lifecycle. The tokenizer core, language bindings, and package publishing stay in the sibling `Nexaloid` repository.
 
-## Current Model
+## Public Release Model
+
+- Task: generic entity boundary detection with `O/B/M/E/S`
+- Sources: THUOCL (MIT), JD comments (Apache-2.0), deterministic synthesis
+- Data: 37,757 sentences with group-safe train/dev/test splits
+- Gazetteer: 74,543 THUOCL terms; 6,959 training entity terms
+- Model: averaged structured perceptron with character and gazetteer features
+- Quality: dev F1 `0.793487`, test F1 `0.864987`
+- Artifact: `data/releases/bmes-public/entity_bmes_perceptron.nxbmes`
+
+## Internal Research Model
 
 - Task: generic entity boundary detection with `O/B/M/E/S`
 - Labels: 20 broad entity types; types supervise annotation, while the runtime model predicts boundaries only
@@ -23,8 +33,10 @@ data/tasks/entity_llm_reviewed/    earlier review snapshot
 data/tasks/entity_llm_reconciled/  final reviewed labels used for training
 data/tasks/entity_llm_bmes/        grouped splits and JSON training model
 data/tasks/entity_hmm/             legacy PER/LOC/ORG baseline data
-data/resources/                    bounded WordHub gazetteer
-data/releases/bmes/                exported .nxbmes artifact and manifest
+data/tasks/entity_release_*/       release-safe labels, splits, and model
+data/resources/                    internal and THUOCL MIT gazetteers
+data/releases/bmes/                internal research artifact
+data/releases/bmes-public/         public Apache-2.0 artifact and notices
 tools/                             label, build, train, quality, export
 plugins/                           optional Zig BMES CandidateProvider
 archive/                           legacy PER/LOC/ORG and lexicon baselines
@@ -34,24 +46,46 @@ include/                           Nexaloid plugin ABI header
 ## Verify Current Artifact
 
 ```powershell
-python tools/check_entity_bmes_quality.py
-python tools/export_nxbmes.py
-python tools/check_nxbmes.py
+python tools/check_entity_bmes_quality.py `
+  --model data/tasks/entity_release_combined/entity_release_perceptron.json `
+  --data-dir data/tasks/entity_release_combined `
+  --min-dev-f1 0.79 --min-test-f1 0.86
+python tools/check_nxbmes.py `
+  --artifact data/releases/bmes-public/entity_bmes_perceptron.nxbmes `
+  --manifest data/releases/bmes-public/entity_bmes_perceptron.manifest.json `
+  --min-feature-count 14000 --min-general-count 74000 --min-entity-count 6900
 python tools/plugin_integration_check.py --nexaloid-dir ..\Nexaloid
 ```
 
 ## Rebuild Model
 
+The checked-in combined splits and gazetteer are sufficient for deterministic
+retraining; no external corpus is required for this step:
+
 ```powershell
-python tools/build_entity_llm_bmes.py
 python tools/train_entity_llm_perceptron.py `
-  --generic --epochs 100 --min-abs 0.10 `
-  --gazetteer data/resources/lexicon_wordhub.txt `
+  --data-dir data/tasks/entity_release_combined `
+  --out data/tasks/entity_release_combined/entity_release_perceptron.json `
+  --generic --epochs 15 --seed 23 --min-abs 0.10 `
+  --gazetteer data/resources/lexicon_thuocl_mit.txt `
   --gazetteer-max-word-len 12 `
   --train-entity-gazetteer-min-count 2
-python tools/check_entity_bmes_quality.py
-python tools/export_nxbmes.py
-python tools/check_nxbmes.py
+python tools/export_nxbmes.py `
+  --model data/tasks/entity_release_combined/entity_release_perceptron.json `
+  --out data/releases/bmes-public/entity_bmes_perceptron.nxbmes `
+  --manifest data/releases/bmes-public/entity_bmes_perceptron.manifest.json `
+  --distribution public --license-spdx Apache-2.0
+```
+
+Regenerating the source labels and splits additionally requires a THUOCL
+checkout. The default is `G:/WordHub/THUOCL`; use `--thuocl-root` elsewhere:
+
+```powershell
+python tools/build_release_safe_entity_data.py --thuocl-root G:/WordHub/THUOCL
+python tools/build_entity_llm_bmes.py `
+  --input-dir data/tasks/entity_release_labels `
+  --out-dir data/tasks/entity_release_bmes
+python tools/merge_release_safe_bmes.py
 ```
 
 ## LLM Annotation
@@ -63,7 +97,7 @@ Raw WordHub corpora are not copied into this repository. Their paths, hashes, so
 ## Build Plugin
 
 ```powershell
-zig build-lib -dynamic -lc --name nexaloid_plugin_entity_bmes plugins/entity_bmes_plugin.zig
+zig build-lib -O ReleaseFast -dynamic -lc --name nexaloid_plugin_entity_bmes plugins/entity_bmes_plugin.zig
 ```
 
 Load it from Nexaloid:
@@ -76,13 +110,10 @@ The plugin mmaps one self-contained `.nxbmes` containing hashed perceptron weigh
 
 ## Release for Nexaloid
 
-The release workflow publishes an immutable, versioned model after explicit
-license clearance. Its manifest records `distribution.scope=public` and the
-model SPDX license. Nexaloid downloads a pinned tag and SHA-256 during its own
-release; the model is not copied into the Nexaloid Git repository. A release
-also requires a reviewed `data/releases/bmes/MODEL_LICENSE.txt` with
-`Distribution: public`; the checked-in notice deliberately blocks the current
-uncleared model.
+The release workflow publishes the immutable `bmes-public` artifact. It is
+trained only from THUOCL (MIT), JD comments (Apache-2.0), and deterministic
+synthetic examples. The same artifact, manifest, license, and third-party
+notices are bundled directly in Nexaloid packages.
 
 ## Data Licensing
 
