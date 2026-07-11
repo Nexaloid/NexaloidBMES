@@ -75,6 +75,8 @@ def main() -> int:
                 "build-lib",
                 "-O",
                 "ReleaseFast",
+                "-mcpu",
+                "baseline",
                 "-dynamic",
                 "-lc",
                 f"-femit-bin={plugin}",

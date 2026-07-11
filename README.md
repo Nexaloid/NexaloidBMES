@@ -97,7 +97,7 @@ Raw WordHub corpora are not copied into this repository. Their paths, hashes, so
 ## Build Plugin
 
 ```powershell
-zig build-lib -O ReleaseFast -dynamic -lc --name nexaloid_plugin_entity_bmes plugins/entity_bmes_plugin.zig
+zig build-lib -O ReleaseFast -mcpu baseline -dynamic -lc --name nexaloid_plugin_entity_bmes plugins/entity_bmes_plugin.zig
 ```
 
 Load it from Nexaloid:
