@@ -128,11 +128,6 @@ const Char = struct {
     end_byte: usize,
 };
 
-const LexMask = struct {
-    roles: u8 = 0,
-    buckets: u16 = 0,
-};
-
 const Config = struct {
     artifact_path: [*:0]const u8,
     owned_artifact_path: ?[:0]u8 = null,
@@ -294,12 +289,14 @@ fn provideCandidates(
 
     const emissions = try allocator.alloc([state_count]f32, chars.items.len);
     defer allocator.free(emissions);
+    const back = try allocator.alloc([state_count]u8, chars.items.len);
+    defer allocator.free(back);
     for (emissions, 0..) |*scores, index| {
         scores.* = [_]f32{0.0} ** state_count;
         addBaseFeatures(plugin.model, text, chars.items, index, scores);
-        addLexiconFeatures(plugin.model, plugin.model.general, "lx", text, chars.items, index, scores);
-        addLexiconFeatures(plugin.model, plugin.model.entity, "ex", text, chars.items, index, scores);
     }
+    addLexiconFeaturesAll(plugin.model, plugin.model.general, "lx", chars.items, emissions, back);
+    addLexiconFeaturesAll(plugin.model, plugin.model.entity, "ex", chars.items, emissions, back);
 
     var transitions = [_][state_count]f32{[_]f32{0.0} ** state_count} ** (state_count + 1);
     const transition_names = [_][]const u8{ "T=<START>", "T=O", "T=B", "T=M", "T=E", "T=S" };
@@ -307,8 +304,8 @@ fn provideCandidates(
         transitions[index] = plugin.model.weights(featureHash(name)) orelse [_]f32{0.0} ** state_count;
     }
 
-    const back = try allocator.alloc([state_count]u8, chars.items.len);
-    defer allocator.free(back);
+    // Lexicon extraction reuses the backpointer allocation as scratch; clear it before Viterbi.
+    @memset(back, [_]u8{0} ** state_count);
     var previous = [_]f32{-std.math.inf(f32)} ** state_count;
     for ([_]usize{ 0, 1, 4 }) |state| previous[state] = emissions[0][state] + transitions[0][state];
     back[0] = [_]u8{0} ** state_count;
@@ -394,43 +391,50 @@ fn addBaseFeatures(model: Model, text: []const u8, chars: []const Char, index: u
     addHash(model, scores, hashParts(&.{ "k0k+1=", k0, ":", k1r }));
 }
 
-fn addLexiconFeatures(model: Model, dict: Dict, prefix: []const u8, text: []const u8, chars: []const Char, index: usize, scores: *[state_count]f32) void {
-    _ = text;
-    const mask = lexiconMask(dict, chars, index, model.max_word_len);
-    const role_names = [_][]const u8{ "B", "M", "E", "S" };
-    const bucket_names = [_][]const u8{ "2", "3", "4", "5+" };
-    for (role_names, 0..) |role, role_index| {
-        if (mask.roles & (@as(u8, 1) << @intCast(role_index)) != 0) {
-            addHash(model, scores, hashParts(&.{ prefix, "=", role }));
-        }
-        for (bucket_names, 0..) |bucket, bucket_index| {
-            const bit: u4 = @intCast(role_index * 4 + bucket_index);
-            if (mask.buckets & (@as(u16, 1) << bit) != 0) {
-                addHash(model, scores, hashParts(&.{ prefix, "=", role, ":", bucket }));
-            }
-        }
-    }
-}
-
-fn lexiconMask(dict: Dict, chars: []const Char, index: usize, max_word_len: u32) LexMask {
-    var mask = LexMask{};
-    const max_len: usize = max_word_len;
-    var start = if (index + 1 > max_len) index + 1 - max_len else 0;
-    while (start <= index) : (start += 1) {
+fn addLexiconFeaturesAll(
+    model: Model,
+    dict: Dict,
+    prefix: []const u8,
+    chars: []const Char,
+    emissions: [][state_count]f32,
+    scratch: [][state_count]u8,
+) void {
+    @memset(scratch, [_]u8{0} ** state_count);
+    const max_len: usize = model.max_word_len;
+    for (0..chars.len) |start| {
         var state: u32 = 0;
         var end = start;
         while (end < chars.len and end - start < max_len) : (end += 1) {
             state = dict.child(state, chars[end].codepoint) orelse break;
             const match_end = end + 1;
             const length = match_end - start;
-            if (dict.nodes[state].word_id == 0 or length < 2 or match_end <= index) continue;
-            const role: usize = if (index == start) 0 else if (index + 1 == match_end) 2 else 1;
+            if (dict.nodes[state].word_id == 0 or length < 2) continue;
             const bucket: usize = if (length == 2) 0 else if (length == 3) 1 else if (length == 4) 2 else 3;
-            mask.roles |= @as(u8, 1) << @intCast(role);
-            mask.buckets |= @as(u16, 1) << @intCast(role * 4 + bucket);
+            for (start..match_end) |index| {
+                const role: usize = if (index == start) 0 else if (index + 1 == match_end) 2 else 1;
+                scratch[index][0] |= @as(u8, 1) << @intCast(role);
+                const bit = role * 4 + bucket;
+                scratch[index][1 + bit / 8] |= @as(u8, 1) << @intCast(bit % 8);
+            }
         }
     }
-    return mask;
+
+    const role_names = [_][]const u8{ "B", "M", "E", "S" };
+    const bucket_names = [_][]const u8{ "2", "3", "4", "5+" };
+    for (scratch, 0..) |mask, index| {
+        const buckets = @as(u16, mask[1]) | (@as(u16, mask[2]) << 8);
+        for (role_names, 0..) |role, role_index| {
+            if (mask[0] & (@as(u8, 1) << @intCast(role_index)) != 0) {
+                addHash(model, &emissions[index], hashParts(&.{ prefix, "=", role }));
+            }
+            for (bucket_names, 0..) |bucket, bucket_index| {
+                const bit: u4 = @intCast(role_index * 4 + bucket_index);
+                if (buckets & (@as(u16, 1) << bit) != 0) {
+                    addHash(model, &emissions[index], hashParts(&.{ prefix, "=", role, ":", bucket }));
+                }
+            }
+        }
+    }
 }
 
 fn addHash(model: Model, scores: *[state_count]f32, hash: u64) void {
