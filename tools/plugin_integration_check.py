@@ -10,6 +10,9 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
+DEFAULT_MIN_MARGIN = 35.0
+HARD_BOUNDARY_FEATURE = "__runtime_hard_boundary__"
+ALLOWED_CONNECTORS = {"·", "-", "‐", "‑", "&", "/"}
 
 
 def plugin_name() -> str:
@@ -33,6 +36,33 @@ def ascii_boundary_ok(text: str, start: int, end: int) -> bool:
     )
 
 
+def is_entity_body(char: str) -> bool:
+    cp = ord(char)
+    return (
+        0x3400 <= cp <= 0x9FFF
+        or 0x20000 <= cp <= 0x2EBEF
+        or char.isdigit()
+        or "A" <= char <= "Z"
+        or "a" <= char <= "z"
+        or 0x00C0 <= cp <= 0x02AF
+        or 0x0370 <= cp <= 0x052F
+        or 0xFF21 <= cp <= 0xFF3A
+        or 0xFF41 <= cp <= 0xFF5A
+    )
+
+
+def is_hard_boundary(text: str, index: int) -> bool:
+    char = text[index]
+    if char in ALLOWED_CONNECTORS:
+        return (
+            index == 0
+            or index + 1 == len(text)
+            or not is_entity_body(text[index - 1])
+            or not is_entity_body(text[index + 1])
+        )
+    return not is_entity_body(char)
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--nexaloid-dir", type=Path, default=ROOT.parent / "Nexaloid")
@@ -47,6 +77,11 @@ def main() -> int:
         default=ROOT / "data" / "tasks" / "entity_release_combined" / "entity_release_perceptron.json",
     )
     args = parser.parse_args()
+
+    for text, index in (("甲·乙", 1), ("A-B", 1), ("A‐B", 1), ("A‑B", 1), ("A&B", 1), ("A/B", 1)):
+        assert not is_hard_boundary(text, index)
+    for text, index in (("甲 乙", 1), ("甲：乙", 1), ("《甲》", 0), ("《甲》", 2), ("甲- 乙", 1)):
+        assert is_hard_boundary(text, index)
 
     python_src = args.nexaloid_dir / "bindings" / "python" / "src"
     sys.path.insert(0, str(python_src))
@@ -65,7 +100,12 @@ def main() -> int:
 
     from nexaloid import Tokenizer
     from lexicon import load_lexicon
-    from train_entity_llm_perceptron import decode
+    from train_entity_llm_perceptron import (
+        decode_tags_with_features,
+        emission_scores,
+        sentence_features,
+        tags_to_spans,
+    )
 
     with tempfile.TemporaryDirectory() as tmp:
         plugin = Path(tmp) / plugin_name()
@@ -88,10 +128,10 @@ def main() -> int:
         try:
             tokenizer.load_plugin(plugin, json.dumps({"artifact": str(args.artifact)}))
             for text, expected in (
-                ("阿强加入云海数据研究院", "云海数据研究院"),
-                ("团队计划前往北京开展调研。", "北京"),
-                ("观测人员记录到了梅花鹿。", "梅花鹿"),
-                ("展会上重点介绍了东风本田的配置。", "东风本田"),
+                ("团队计划前往云海数据研究院开展调研。", "云海数据研究院"),
+                ("欧盟委员会发布公告。", "欧盟委员会"),
+                ("韩国财政部公布数据。", "韩国财政部"),
+                ("美国国务院发表声明。", "美国国务院"),
             ):
                 entities = [
                     token.text
@@ -100,7 +140,24 @@ def main() -> int:
                 ]
                 assert expected in entities, (text, entities)
 
+            for text, rejected in (
+                ("央行票据 支持财政部", "央行票据 支持财政部"),
+                ("事关国民经济", "事关国民经济"),
+                ("国家开发银行湖南省", "国家开发银行湖南省"),
+                ("超卓航科：控股股东", "超卓航科：控股股东"),
+                ("公司上涨实现季度增长", "公司上涨实现"),
+            ):
+                entities = [token for token in tokenizer.tokenize(text) if token.source == "plugin"]
+                assert rejected not in {token.text for token in entities}, (text, entities)
+                assert all(token.score <= 400.0 for token in entities)
+            for word in ("公司", "上涨", "实现", "季度"):
+                assert not [token for token in tokenizer.tokenize(word) if token.source == "plugin"], word
+
             model = json.loads(args.model.read_text(encoding="utf-8"))
+            runtime_weights = dict(model["weights"])
+            runtime_weights[HARD_BOUNDARY_FEATURE] = {
+                state: -float("inf") for state in ("B", "M", "E", "S")
+            }
             gazetteer = model["gazetteer"]
             lexicon = {
                 word
@@ -109,28 +166,51 @@ def main() -> int:
             }
             entity_lexicon = set(gazetteer["training_entity_words"])
             for split in ("dev", "test"):
+                true_positive = false_positive = false_negative = 0
                 path = args.model.parent / f"{split}.jsonl"
                 for raw in path.read_text(encoding="utf-8").splitlines():
                     row = json.loads(raw)
                     text = row["text"]
-                    expected = {
-                        (start, end)
-                        for start, end, _ in decode(
-                            model["weights"],
-                            text,
-                            True,
-                            lexicon,
-                            entity_lexicon,
-                            gazetteer["max_word_len"],
-                        )
-                        if end - start >= 2 and ascii_boundary_ok(text, start, end)
-                    }
+                    gold = {(start, end) for start, end, _ in row["spans"]}
+                    features = sentence_features(text, lexicon, entity_lexicon, gazetteer["max_word_len"])
+                    features = [
+                        values + ((HARD_BOUNDARY_FEATURE,) if is_hard_boundary(text, index) else ())
+                        for index, values in enumerate(features)
+                    ]
+                    tags = decode_tags_with_features(runtime_weights, features, True)
+                    expected = set()
+                    for start, end, _ in tags_to_spans(tags, True):
+                        if (
+                            end - start < 2
+                            or not ascii_boundary_ok(text, start, end)
+                            or text[start:end] in lexicon
+                        ):
+                            continue
+                        margins = []
+                        for index in range(start, end):
+                            scores = emission_scores(runtime_weights, features[index], tuple(model["states"]))
+                            margins.append(
+                                scores[tags[index]]
+                                - max(score for state, score in scores.items() if state != tags[index])
+                            )
+                        if sum(margins) / len(margins) >= DEFAULT_MIN_MARGIN:
+                            expected.add((start, end))
                     actual = {
                         (token.start_char, token.end_char)
                         for token in tokenizer.tokenize(text)
                         if token.source == "plugin"
                     }
                     assert actual == expected, (split, text, expected, actual)
+                    true_positive += len(actual & gold)
+                    false_positive += len(actual - gold)
+                    false_negative += len(gold - actual)
+                precision = true_positive / (true_positive + false_positive)
+                assert precision >= 0.90, (split, precision)
+                assert true_positive >= 700, (split, true_positive)
+                print(
+                    f"{split}_runtime\ttp={true_positive}\tfp={false_positive}\tfn={false_negative}"
+                    f"\tprecision={precision:.6f}"
+                )
         finally:
             tokenizer.close()
 

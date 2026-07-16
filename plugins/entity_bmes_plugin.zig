@@ -14,8 +14,10 @@ const artifact_magic = "NXBMES01";
 const dict_magic = "NXDICT1\x00";
 const state_count = 5;
 const state_names = [_][]const u8{ "O", "B", "M", "E", "S" };
-const default_score_per_char: f32 = 60.0;
+const default_score_per_char: f32 = 3.0;
 const default_edge_penalty: f32 = 10.0;
+const default_min_margin: f32 = 35.0;
+const max_candidate_score: f32 = 400.0;
 const default_min_chars: u32 = 2;
 const default_max_chars: u32 = 64;
 const default_flags: u16 = 4;
@@ -70,6 +72,12 @@ const Dict = struct {
         if (self.check[index] != state + 1) return null;
         return @intCast(index);
     }
+
+    fn contains(self: Dict, chars: []const Char, start: usize, end: usize) bool {
+        var state: u32 = 0;
+        for (chars[start..end]) |char| state = self.child(state, char.codepoint) orelse return false;
+        return self.nodes[state].word_id != 0;
+    }
 };
 
 const Model = struct {
@@ -100,6 +108,7 @@ const Plugin = struct {
     model: Model,
     score_per_char: f32,
     edge_penalty: f32,
+    min_margin: f32,
     min_chars: u32,
     max_chars: u32,
     flags: u16,
@@ -133,6 +142,7 @@ const Config = struct {
     owned_artifact_path: ?[:0]u8 = null,
     score_per_char: f32 = default_score_per_char,
     edge_penalty: f32 = default_edge_penalty,
+    min_margin: f32 = default_min_margin,
     min_chars: u32 = default_min_chars,
     max_chars: u32 = default_max_chars,
     flags: u16 = default_flags,
@@ -157,7 +167,7 @@ export fn nx_plugin_get_info(plugin_ptr: ?*anyopaque, out_info: ?*NxPluginInfo) 
     info.* = .{
         .abi_version = abi_version,
         .name = "entity_bmes_plugin",
-        .version = "0.1.0",
+        .version = "0.2.0",
         .kind = candidate_provider_kind,
     };
     return 0;
@@ -186,6 +196,7 @@ fn initPlugin(config_z: [*:0]const u8) !*Plugin {
         .model = model,
         .score_per_char = config.score_per_char,
         .edge_penalty = config.edge_penalty,
+        .min_margin = config.min_margin,
         .min_chars = config.min_chars,
         .max_chars = config.max_chars,
         .flags = config.flags,
@@ -212,7 +223,8 @@ fn parseConfig(config_z: [*:0]const u8) !Config {
     var out = Config{ .artifact_path = artifact_z, .owned_artifact_path = artifact_z };
     if (object.get("score_per_char")) |value| out.score_per_char = @floatCast(numberValue(value) orelse return error.BadConfig);
     if (object.get("edge_penalty")) |value| out.edge_penalty = @floatCast(numberValue(value) orelse return error.BadConfig);
-    if (!std.math.isFinite(out.score_per_char) or !std.math.isFinite(out.edge_penalty)) return error.BadConfig;
+    if (object.get("min_margin")) |value| out.min_margin = @floatCast(numberValue(value) orelse return error.BadConfig);
+    if (!std.math.isFinite(out.score_per_char) or !std.math.isFinite(out.edge_penalty) or !std.math.isFinite(out.min_margin)) return error.BadConfig;
     if (object.get("min_chars")) |value| out.min_chars = u32Value(value) orelse return error.BadConfig;
     if (object.get("max_chars")) |value| out.max_chars = u32Value(value) orelse return error.BadConfig;
     if (object.get("flags")) |value| {
@@ -297,6 +309,12 @@ fn provideCandidates(
     }
     addLexiconFeaturesAll(plugin.model, plugin.model.general, "lx", chars.items, emissions, back);
     addLexiconFeaturesAll(plugin.model, plugin.model.entity, "ex", chars.items, emissions, back);
+    for (chars.items, 0..) |_, index| {
+        if (!isHardBoundary(chars.items, index)) continue;
+        const outside_score = emissions[index][0];
+        emissions[index] = [_]f32{-std.math.inf(f32)} ** state_count;
+        emissions[index][0] = outside_score;
+    }
 
     var transitions = [_][state_count]f32{[_]f32{0.0} ** state_count} ** (state_count + 1);
     const transition_names = [_][]const u8{ "T=<START>", "T=O", "T=B", "T=M", "T=E", "T=S" };
@@ -348,9 +366,12 @@ fn provideCandidates(
             continue;
         }
         const length = end - index;
-        if (length >= plugin.min_chars and length <= plugin.max_chars and asciiBoundaryOk(chars.items, index, end)) {
-            const score = plugin.score_per_char * @as(f32, @floatFromInt(length)) - plugin.edge_penalty;
-            if (std.math.isFinite(score)) {
+        if (length >= plugin.min_chars and length <= plugin.max_chars and
+            asciiBoundaryOk(chars.items, index, end) and !plugin.model.general.contains(chars.items, index, end))
+        {
+            const margin = candidateMargin(emissions, tags, index, end);
+            const score = @min(max_candidate_score, plugin.score_per_char * margin - plugin.edge_penalty);
+            if (std.math.isFinite(margin) and margin >= plugin.min_margin and std.math.isFinite(score)) {
                 var candidate = NxPluginCandidate{
                     .start_char = @intCast(index),
                     .end_char = @intCast(end),
@@ -363,6 +384,19 @@ fn provideCandidates(
         }
         index = end;
     }
+}
+
+fn candidateMargin(emissions: []const [state_count]f32, tags: []const u8, start: usize, end: usize) f32 {
+    var total: f32 = 0.0;
+    for (start..end) |index| {
+        const chosen: usize = tags[index];
+        var alternative = -std.math.inf(f32);
+        for (0..state_count) |state| {
+            if (state != chosen) alternative = @max(alternative, emissions[index][state]);
+        }
+        total += emissions[index][chosen] - alternative;
+    }
+    return total / @as(f32, @floatFromInt(end - start));
 }
 
 fn addBaseFeatures(model: Model, text: []const u8, chars: []const Char, index: usize, scores: *[state_count]f32) void {
@@ -482,6 +516,25 @@ fn isDigit(cp: u21) bool {
 fn isCommonUnicodeLetter(cp: u21) bool {
     return (cp >= 0x00c0 and cp <= 0x02af) or (cp >= 0x0370 and cp <= 0x052f) or
         (cp >= 0xff21 and cp <= 0xff3a) or (cp >= 0xff41 and cp <= 0xff5a);
+}
+
+fn isHardBoundary(chars: []const Char, index: usize) bool {
+    const cp = chars[index].codepoint;
+    if (isWhitespace(cp)) return true;
+    if (isAllowedConnector(cp)) {
+        return index == 0 or index + 1 == chars.len or
+            !isEntityBody(chars[index - 1].codepoint) or !isEntityBody(chars[index + 1].codepoint);
+    }
+    return !isEntityBody(cp);
+}
+
+fn isAllowedConnector(cp: u21) bool {
+    return cp == 0x00b7 or cp == '-' or cp == 0x2010 or cp == 0x2011 or cp == '&' or cp == '/';
+}
+
+fn isEntityBody(cp: u21) bool {
+    return (cp >= 0x3400 and cp <= 0x9fff) or (cp >= 0x20000 and cp <= 0x2ebef) or
+        isDigit(cp) or (cp >= 'A' and cp <= 'Z') or (cp >= 'a' and cp <= 'z') or isCommonUnicodeLetter(cp);
 }
 
 fn isWhitespace(cp: u21) bool {
