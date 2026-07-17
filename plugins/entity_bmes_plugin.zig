@@ -329,14 +329,14 @@ const EntityGate = struct {
             }
             if (length != reversed.len or state != 0) continue;
             const key = tripleGateKey(reversed[2], reversed[1], reversed[0]);
-            const bit = gateHash(key) & (bloom_bits - 1);
+            const bit: usize = @intCast(gateHash(key) & (bloom_bits - 1));
             out.prefix_bloom[bit / 8] |= @as(u8, 1) << @intCast(bit % 8);
         }
         return out;
     }
 
     fn matchesAt(self: *const EntityGate, dict: Dict, chars: []const Char, start: usize, end: usize, max_len: usize, key: u64) bool {
-        const bit = gateHash(key) & (bloom_bits - 1);
+        const bit: usize = @intCast(gateHash(key) & (bloom_bits - 1));
         if (self.prefix_bloom[bit / 8] & (@as(u8, 1) << @intCast(bit % 8)) == 0) return false;
         var state: u32 = 0;
         var index = start;
