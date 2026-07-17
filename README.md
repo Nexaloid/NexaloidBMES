@@ -106,7 +106,7 @@ Load it from Nexaloid:
 {"artifact":"data/entity/entity_bmes_perceptron.nxbmes","score_per_char":3.0,"edge_penalty":10.0,"min_margin":35.0,"min_chars":2,"max_chars":64,"flags":4}
 ```
 
-The plugin mmaps one self-contained `.nxbmes` containing hashed perceptron weights plus general/entity NXDICT tries. Candidates below `min_margin` or already present in the general lexicon are rejected; accepted scores use the normalized model margin rather than entity length and are capped at `400`. Unicode whitespace and punctuation are hard boundaries, except internal `·`, `-`, `‐`, `‑`, `&`, and `/` between letters or digits. It uses CandidateProvider ABI v1 and requires no core ABI changes. Loading any plugin currently serializes Nexaloid batch tokenization.
+The plugin mmaps one self-contained `.nxbmes` containing hashed perceptron weights plus general/entity NXDICT tries. Candidates below `min_margin` or already present in the general lexicon are rejected; accepted scores use the normalized model margin rather than entity length and are capped at `400`. Unicode whitespace and punctuation are hard boundaries, except internal `·`, `-`, `‐`, `‑`, `&`, and `/` between letters or digits. It uses CandidateProvider ABI v2 to reuse the core scanner's character view. Loading any plugin currently serializes Nexaloid batch tokenization.
 
 ## Release for Nexaloid
 

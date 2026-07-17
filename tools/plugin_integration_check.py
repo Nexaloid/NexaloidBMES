@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import struct
 import subprocess
 import sys
 import tempfile
@@ -107,6 +108,11 @@ def main() -> int:
         tags_to_spans,
     )
 
+    plugin_source = ROOT / "plugins" / "entity_bmes_plugin.zig"
+    assert plugin_source.read_bytes() == (
+        args.nexaloid_dir / "tools" / "entity_bmes_plugin.zig"
+    ).read_bytes()
+
     with tempfile.TemporaryDirectory() as tmp:
         plugin = Path(tmp) / plugin_name()
         subprocess.run(
@@ -114,13 +120,13 @@ def main() -> int:
                 "zig",
                 "build-lib",
                 "-O",
-                "ReleaseFast",
+                "ReleaseSafe",
                 "-mcpu",
                 "baseline",
                 "-dynamic",
                 "-lc",
                 f"-femit-bin={plugin}",
-                str(ROOT / "plugins" / "entity_bmes_plugin.zig"),
+                str(plugin_source),
             ],
             check=True,
         )
@@ -216,18 +222,38 @@ def main() -> int:
         finally:
             tokenizer.close()
 
-        bad_artifact = Path(tmp) / "bad.nxbmes"
-        bad_artifact.write_bytes(args.artifact.read_bytes()[:64])
-        tokenizer = Tokenizer(dict_path=Path(tmp) / "missing.tsv")
-        try:
+        artifact_bytes = args.artifact.read_bytes()
+        misaligned = bytearray(artifact_bytes)
+        struct.pack_into("<I", misaligned, 20, struct.unpack_from("<I", misaligned, 20)[0] + 1)
+        feature_count = struct.unpack_from("<I", artifact_bytes, 12)[0]
+        general_len = struct.unpack_from("<I", artifact_bytes, 20)[0]
+        entity_offset = struct.calcsize("<8s14I") + feature_count * 32 + general_len
+        code_count, state_count = struct.unpack_from("<2I", artifact_bytes, entity_offset + 8)
+        check_offset = entity_offset + 20 + (code_count + state_count) * 4
+        checks = struct.unpack_from(f"<{state_count}I", artifact_bytes, check_offset)
+        check_index = next(index for index, value in enumerate(checks) if index and value)
+        bad_parent = bytearray(artifact_bytes)
+        struct.pack_into("<I", bad_parent, check_offset + check_index * 4, state_count + 1)
+        nan_weight = bytearray(artifact_bytes)
+        struct.pack_into("<f", nan_weight, struct.calcsize("<8s14I") + 8, float("nan"))
+        for name, payload in (
+            ("truncated", artifact_bytes[:64]),
+            ("misaligned", misaligned),
+            ("bad-dat-parent", bad_parent),
+            ("nan-weight", nan_weight),
+        ):
+            bad_artifact = Path(tmp) / f"{name}.nxbmes"
+            bad_artifact.write_bytes(payload)
+            tokenizer = Tokenizer(dict_path=Path(tmp) / "missing.tsv")
             try:
-                tokenizer.load_plugin(plugin, str(bad_artifact))
-            except Exception:
-                pass
-            else:
-                raise AssertionError("truncated artifact was accepted")
-        finally:
-            tokenizer.close()
+                try:
+                    tokenizer.load_plugin(plugin, str(bad_artifact))
+                except Exception:
+                    pass
+                else:
+                    raise AssertionError(f"{name} artifact was accepted")
+            finally:
+                tokenizer.close()
     print("plugin_integration_ok")
     return 0
 

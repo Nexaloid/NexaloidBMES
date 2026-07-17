@@ -1,6 +1,8 @@
 const std = @import("std");
 const builtin = @import("builtin");
 const c = if (builtin.os.tag == .windows) @cImport({
+    // MinGW fortify wrappers trip Zig 0.16 translate-c in ReleaseSafe.
+    @cDefine("_FORTIFY_SOURCE", "0");
     @cInclude("windows.h");
 }) else @cImport({
     @cInclude("fcntl.h");
@@ -70,6 +72,11 @@ const NgramWeights = extern struct {
     left: Weights,
     right: Weights,
 };
+
+fn weightsFinite(weights: Weights) bool {
+    for (weights) |weight| if (!std.math.isFinite(weight)) return false;
+    return true;
+}
 
 const NgramTable = struct {
     keys: []const u64,
@@ -742,8 +749,9 @@ fn loadModel(path_z: [*:0]const u8) !Model {
     const entity_gate_failure = sliceAs(u32, data, &offset, entity_gate_count) orelse return error.BadArtifact;
     const entity_gate_output = sliceBytes(data, &offset, entity_gate_count) orelse return error.BadArtifact;
     if (offset != data.len) return error.BadArtifact;
-    for (features[1..], 1..) |record, index| {
-        if (record.hash <= features[index - 1].hash) return error.BadArtifact;
+    for (features, 0..) |record, index| {
+        if (!weightsFinite(record.weights)) return error.BadArtifact;
+        if (index > 0 and record.hash <= features[index - 1].hash) return error.BadArtifact;
     }
     var populated_gate_slots: u32 = 0;
     for (gate_slots) |key| populated_gate_slots += @intFromBool(key != 0);
@@ -753,6 +761,12 @@ fn loadModel(path_z: [*:0]const u8) !Model {
     var populated_triples: u32 = 0;
     for (triple_keys) |key| populated_triples += @intFromBool(key != 0);
     if (populated_pairs != pair_count or populated_triples != triple_count) return error.BadArtifact;
+    for (pair_features) |record| {
+        if (!weightsFinite(record.left) or !weightsFinite(record.right)) return error.BadArtifact;
+    }
+    for (triple_features) |record| {
+        if (!weightsFinite(record.left) or !weightsFinite(record.right)) return error.BadArtifact;
+    }
     var feature_index = try FeatureIndex.init(features);
     errdefer feature_index.deinit();
     var general = try parseDict(general_data);
@@ -797,6 +811,13 @@ fn parseDict(data: []const u8) !Dict {
     if (codepoints.len == 0 or codepoints.len > std.math.maxInt(u16)) return error.BadArtifact;
     const max_codepoint = codepoints[codepoints.len - 1];
     if (max_codepoint > 0x10ffff) return error.BadArtifact;
+    for (check[1..], 1..) |parent_plus_one, child| {
+        if (parent_plus_one == 0) continue;
+        if (parent_plus_one > state_count_value) return error.BadArtifact;
+        const parent = parent_plus_one - 1;
+        const parent_base: usize = base[parent];
+        if (child <= parent_base or child - parent_base > codepoints.len) return error.BadArtifact;
+    }
     const code_ids = try allocator.alloc(u16, @as(usize, max_codepoint) + 1);
     errdefer allocator.free(code_ids);
     @memset(code_ids, 0);
@@ -1256,7 +1277,7 @@ fn mapFileReadOnly(path_z: [*:0]const u8) !MappedFile {
 }
 
 fn sliceAs(comptime T: type, data: []const u8, offset: *usize, count: u32) ?[]const T {
-    if (offset.* > data.len) return null;
+    if (offset.* > data.len or offset.* % @alignOf(T) != 0) return null;
     const item_count: usize = count;
     if (item_count > (data.len - offset.*) / @sizeOf(T)) return null;
     const end = offset.* + item_count * @sizeOf(T);

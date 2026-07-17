@@ -254,7 +254,11 @@ def main() -> int:
     general_words = sorted(
         word for word in load_lexicon(lexicon_path) if 2 <= len(word) <= max_word_len
     )
-    entity_words = sorted(set(gazetteer.get("training_entity_words", [])))
+    entity_words = sorted(
+        word
+        for word in set(gazetteer.get("training_entity_words", []))
+        if 2 <= len(word) <= max_word_len and not any(char.isspace() for char in word)
+    )
 
     records = []
     seen_hashes: dict[int, str] = {}

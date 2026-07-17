@@ -24,7 +24,23 @@ def check_nxdict(blob: bytes) -> int:
         raise AssertionError("invalid embedded NXDICT")
     code_count, state_count, entry_count = struct.unpack_from("<III", blob, 8)
     minimum = 20 + code_count * 4 + state_count * 16
-    assert entry_count > 0 and state_count > 0 and len(blob) >= minimum
+    assert code_count > 0 and entry_count > 0 and state_count > 0 and len(blob) >= minimum
+    codepoints = struct.unpack_from(f"<{code_count}I", blob, 20)
+    assert all(left < right for left, right in zip(codepoints, codepoints[1:]))
+    assert codepoints[-1] <= 0x10FFFF
+    base_offset = 20 + code_count * 4
+    base = struct.unpack_from(f"<{state_count}I", blob, base_offset)
+    check = struct.unpack_from(f"<{state_count}I", blob, base_offset + state_count * 4)
+    for child, parent_plus_one in enumerate(check[1:], 1):
+        if not parent_plus_one:
+            continue
+        assert parent_plus_one <= state_count
+        parent_base = base[parent_plus_one - 1]
+        assert parent_base < child <= parent_base + code_count
+    nodes_offset = base_offset + state_count * 8
+    for index in range(state_count):
+        word_id, score = struct.unpack_from("<If", blob, nodes_offset + index * 8)
+        assert word_id <= entry_count and math.isfinite(score)
     return entry_count
 
 
